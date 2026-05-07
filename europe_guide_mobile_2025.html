@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>🇪🇺 欧洲三国攻略 2025</title>
+<style>
+/* ===== RESET & BASE ===== */
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{font-size:16px;scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Noto Sans SC',sans-serif;
+  background:#f5f4f0;color:#1a1a2e;line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;outline:none}
+
+/* ===== CSS VARIABLES ===== */
+:root{
+  --madrid:#1a7a4a;--madrid-bg:#e8f5ee;--madrid-border:#a8d5bb;
+  --paris:#2c5f9e;--paris-bg:#e8f0fb;--paris-border:#a8c0e8;
+  --rome:#b03a2e;--rome-bg:#fdf0ee;--rome-border:#e8a89e;
+  --milan:#6c3483;--milan-bg:#f4ecf7;--milan-border:#c8a8e0;
+  --text:#1a1a2e;--muted:#6b7280;--border:#e5e7eb;
+  --white:#fff;--bg:#f5f4f0;--card-shadow:0 1px 6px rgba(0,0,0,0.08);
+  --safe-bottom:env(safe-area-inset-bottom,0px);
+  --safe-top:env(safe-area-inset-top,0px);
+}
+
+/* ===== HEADER ===== */
+.hero{
+  background:linear-gradient(150deg,#0f1c35 0%,#1a2f5e 60%,#0d3b6e 100%);
+  color:#fff;text-align:center;
+  padding:calc(1.5rem + var(--safe-top)) 1rem 1.5rem;
+}
+.hero-flags{font-size:1.8rem;letter-spacing:.4rem;margin-bottom:.6rem}
+.hero h1{font-size:1.35rem;font-weight:700;letter-spacing:.01em;margin-bottom:.2rem}
+.hero-sub{font-size:.8rem;opacity:.65;margin-bottom:1rem}
+.hero-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.hero-chip{
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);
+  border-radius:20px;padding:3px 10px;font-size:.72rem;
+}
+
+/* ===== EDIT NOTICE ===== */
+.edit-notice{
+  background:#fff8e1;border-left:3px solid #f59e0b;
+  padding:.7rem 1rem;font-size:.75rem;color:#78350f;
+  line-height:1.5;
+}
+.edit-notice strong{color:#92400e}
+
+/* ===== ROUTE BAR ===== */
+.route-bar{
+  background:#fff;border-bottom:1px solid var(--border);
+  padding:.8rem .5rem;
+  display:flex;align-items:center;justify-content:center;
+  gap:0;overflow-x:auto;
+  position:sticky;top:0;z-index:200;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+.rc{display:flex;flex-direction:column;align-items:center;padding:.2rem .55rem;border-radius:8px;cursor:pointer;flex-shrink:0}
+.rc:active{background:var(--bg)}
+.rc .cn{font-size:.72rem;font-weight:700}
+.rc .cd{font-size:.62rem;color:var(--muted)}
+.rc.madrid .cn{color:var(--madrid)}
+.rc.paris .cn{color:var(--paris)}
+.rc.rome .cn{color:var(--rome)}
+.rc.milan .cn{color:var(--milan)}
+.ra{font-size:.9rem;color:var(--muted);flex-shrink:0;padding:0 2px}
+
+/* ===== BOTTOM NAV ===== */
+.bottom-nav{
+  position:fixed;bottom:0;left:0;right:0;z-index:300;
+  background:#fff;border-top:1px solid var(--border);
+  display:flex;
+  padding-bottom:var(--safe-bottom);
+  box-shadow:0 -2px 12px rgba(0,0,0,.08);
+}
+.bn-item{
+  flex:1;display:flex;flex-direction:column;align-items:center;
+  padding:.55rem .2rem .4rem;font-size:.58rem;font-weight:600;
+  color:var(--muted);background:none;transition:color .15s;
+}
+.bn-item .bn-icon{font-size:1.2rem;margin-bottom:2px;line-height:1}
+.bn-item.active{color:var(--text)}
+.bn-item.active .bn-icon{transform:scale(1.1)}
+
+/* ===== CONTENT AREA ===== */
+.content{
+  padding:.75rem .75rem calc(4.5rem + var(--safe-bottom));
+  max-width:600px;margin:0 auto;
+}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+
+/* ===== CITY HEADER ===== */
+.city-hdr{
+  display:flex;align-items:center;gap:10px;
+  padding:.8rem .9rem;border-radius:12px;margin-bottom:.6rem;
+  border-left:4px solid;
+}
+.city-hdr.madrid{background:var(--madrid-bg);border-color:var(--madrid)}
+.city-hdr.paris{background:var(--paris-bg);border-color:var(--paris)}
+.city-hdr.rome{background:var(--rome-bg);border-color:var(--rome)}
+.city-hdr.milan{background:var(--milan-bg);border-color:var(--milan)}
+.city-hdr-emoji{font-size:1.5rem}
+.city-hdr-text h2{font-size:.95rem;font-weight:700}
+.city-hdr-text p{font-size:.72rem;color:var(--muted);margin-top:1px}
+
+/* ===== DAY CARD ===== */
+.day-card{
+  background:#fff;border-radius:12px;margin-bottom:.6rem;
+  box-shadow:var(--card-shadow);border:1px solid var(--border);overflow:hidden;
+}
+.day-hdr{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.75rem .9rem;cursor:pointer;
+  -webkit-user-select:none;user-select:none;
+}
+.day-hdr:active{background:var(--bg)}
+.day-left{display:flex;align-items:center;gap:10px}
+.day-badge{
+  width:32px;height:32px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:.75rem;font-weight:700;flex-shrink:0;
+}
+.day-badge.madrid{background:var(--madrid)}
+.day-badge.paris{background:var(--paris)}
+.day-badge.rome{background:var(--rome)}
+.day-badge.milan{background:var(--milan)}
+.day-title h3{font-size:.85rem;font-weight:700;line-height:1.3}
+.day-title p{font-size:.7rem;color:var(--muted);margin-top:1px}
+.day-chevron{font-size:1rem;color:var(--muted);transition:transform .22s;flex-shrink:0}
+.day-chevron.open{transform:rotate(180deg)}
+
+.day-body{display:none;padding:0 .9rem .9rem;border-top:1px solid var(--border)}
+.day-body.open{display:block}
+
+/* ===== PLAN TOGGLE ===== */
+.plan-toggle{display:flex;gap:6px;margin:.75rem 0 .6rem}
+.pt-btn{
+  flex:1;padding:6px 8px;border-radius:8px;
+  border:1px solid var(--border);background:var(--bg);
+  font-size:.72rem;font-weight:600;color:var(--muted);
+  text-align:center;transition:all .15s;
+}
+.pt-btn.active{background:#fff;border-color:#888;color:var(--text)}
+.plan-pane{display:none}
+.plan-pane.active{display:block}
+
+/* ===== ROUTE BUTTON ===== */
+.route-btn{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  background:#4285f4;color:#fff;
+  padding:9px 14px;border-radius:20px;
+  font-size:.75rem;font-weight:700;
+  text-decoration:none;margin-bottom:.75rem;
+  box-shadow:0 2px 8px rgba(66,133,244,.3);
+  -webkit-tap-highlight-color:transparent;
+  transition:opacity .15s;
+}
+.route-btn:active{opacity:.85}
+
+/* ===== TIMELINE ===== */
+.tl-item{display:flex;gap:10px;margin-bottom:.8rem}
+.tl-item:last-child{margin-bottom:0}
+.tl-left{display:flex;flex-direction:column;align-items:center;min-width:44px}
+.tl-time{font-size:.65rem;font-weight:700;color:var(--muted);white-space:nowrap;padding-top:2px}
+.tl-dot{width:8px;height:8px;border-radius:50%;background:#d1d5db;margin-top:5px;flex-shrink:0}
+.tl-line{width:1px;flex:1;background:#e5e7eb;margin-top:3px;min-height:16px}
+.tl-item:last-child .tl-line{display:none}
+.tl-body{flex:1;padding-bottom:2px}
+.tl-name{font-size:.85rem;font-weight:700;margin-bottom:1px;display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.tl-en{font-size:.68rem;color:var(--muted);margin-bottom:3px}
+.tl-desc{font-size:.75rem;color:#374151;line-height:1.55}
+
+/* ===== MAP LINK ===== */
+.ml{
+  display:inline-flex;align-items:center;gap:3px;
+  font-size:.65rem;color:#4285f4;font-weight:700;
+  padding:2px 7px;border-radius:10px;
+  border:1px solid #c6d9fb;background:#f0f5ff;
+  white-space:nowrap;flex-shrink:0;
+}
+
+/* ===== TAGS ===== */
+.tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
+.tag{font-size:.62rem;padding:2px 7px;border-radius:20px;font-weight:700;white-space:nowrap}
+.tw{background:#fff3cd;color:#856404}
+.tf{background:#d1fae5;color:#065f46}
+.tp{background:#ede9fe;color:#5b21b6}
+.tb{background:#fee2e2;color:#991b1b}
+.to{background:#fef3c7;color:#92400e}
+.tt{background:#dbeafe;color:#1e40af}
+.ti{background:#fce7f3;color:#9d174d}
+
+/* ===== INFO BOX ===== */
+.info-box{
+  background:#f0f9ff;border:1px solid #bae6fd;
+  border-radius:10px;padding:.7rem .85rem;
+  margin:.5rem 0;font-size:.75rem;line-height:1.6;
+}
+.info-box strong{color:#0369a1}
+
+/* ===== COST BADGE ===== */
+.cost-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:5px 0;border-bottom:1px solid var(--border);
+  font-size:.75rem;
+}
+.cost-row:last-child{border-bottom:none}
+.cost-label{color:var(--muted)}
+.cost-val{font-weight:700;color:var(--text)}
+
+/* ===== FLIGHT CARD ===== */
+.flight-card{
+  background:#fff;border-radius:12px;border:1px solid var(--border);
+  box-shadow:var(--card-shadow);margin-bottom:.6rem;overflow:hidden;
+}
+.flight-top{
+  display:flex;align-items:center;gap:10px;
+  padding:.75rem .9rem;background:linear-gradient(135deg,#0f1c35,#1a3a6e);
+  color:#fff;
+}
+.flight-icon{font-size:1.3rem}
+.flight-route{font-size:.85rem;font-weight:700}
+.flight-date{font-size:.68rem;opacity:.7;margin-top:1px}
+.flight-body{padding:.75rem .9rem}
+.flight-row{
+  display:flex;justify-content:space-between;
+  padding:4px 0;border-bottom:1px solid var(--border);
+  font-size:.75rem;
+}
+.flight-row:last-child{border-bottom:none}
+.flight-label{color:var(--muted)}
+.flight-val{font-weight:600}
+.flight-link{
+  display:inline-flex;align-items:center;gap:4px;
+  background:#4285f4;color:#fff;
+  padding:7px 14px;border-radius:20px;
+  font-size:.72rem;font-weight:700;margin-top:.6rem;
+  width:100%;justify-content:center;
+}
+
+/* ===== SECTION LABEL ===== */
+.slabel{
+  font-size:.65rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);
+  margin:1.2rem 0 .6rem;padding-bottom:5px;
+  border-bottom:1px solid var(--border);
+}
+.slabel:first-child{margin-top:0}
+
+/* ===== HOTEL / REST CARDS ===== */
+.h-card{
+  background:#fff;border-radius:10px;border:1px solid var(--border);
+  padding:.7rem .85rem;margin-bottom:.5rem;box-shadow:var(--card-shadow);
+}
+.h-name{font-size:.85rem;font-weight:700;margin-bottom:2px}
+.h-area{font-size:.7rem;color:var(--muted);margin-bottom:4px}
+.h-why{font-size:.75rem;color:#374151}
+.h-price{font-size:.7rem;color:var(--muted);font-weight:700;margin-top:4px}
+
+/* ===== REST TABLE ===== */
+.rtable{width:100%;border-collapse:collapse;font-size:.75rem}
+.rtable th{text-align:left;padding:5px 6px;border-bottom:2px solid var(--border);font-size:.65rem;font-weight:700;color:var(--muted)}
+.rtable td{padding:6px 6px;border-bottom:1px solid var(--border);vertical-align:top}
+.rtable tr:last-child td{border-bottom:none}
+.rtable tr:nth-child(even) td{background:#fafafa}
+.r-name{font-weight:700}
+.r-det{color:var(--muted);font-size:.68rem}
+
+/* ===== CHECKLIST ===== */
+.cl-group{margin-bottom:1rem}
+.cl-group h3{font-size:.82rem;font-weight:700;margin-bottom:.4rem}
+.cl-list{list-style:none}
+.cl-item{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:7px 0;border-bottom:1px solid var(--border);font-size:.78rem;
+}
+.cl-item:last-child{border-bottom:none}
+.chk{
+  width:20px;height:20px;border:2px solid #d1d5db;
+  border-radius:5px;flex-shrink:0;margin-top:0;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all .15s;min-width:20px;
+}
+.chk.done{background:#059669;border-color:#059669}
+.chk.done::after{content:'✓';color:#fff;font-size:11px;font-weight:800}
+.cl-text{flex:1;line-height:1.4}
+.cl-text .note{font-size:.68rem;color:var(--muted);display:block;margin-top:2px}
+
+/* ===== BOOKING ITEMS ===== */
+.bk-item{
+  background:#fff;border-radius:10px;border:1px solid var(--border);
+  padding:.7rem .85rem;margin-bottom:.5rem;box-shadow:var(--card-shadow);
+  display:flex;gap:10px;align-items:flex-start;
+}
+.bk-num{
+  width:26px;height:26px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.72rem;font-weight:800;flex-shrink:0;
+}
+.bk-num.urgent{background:#fee2e2;color:#991b1b}
+.bk-num.high{background:#fef3c7;color:#92400e}
+.bk-num.normal{background:#dbeafe;color:#1e40af}
+.bk-body h4{font-size:.82rem;font-weight:700;margin-bottom:2px}
+.bk-body p{font-size:.72rem;color:var(--muted);line-height:1.4}
+.bk-link{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:.7rem;color:#059669;font-weight:700;
+  background:#d1fae5;padding:3px 9px;border-radius:10px;margin-top:4px;
+}
+
+/* ===== TIPS ===== */
+.tip-item{
+  display:flex;gap:10px;padding:8px 0;
+  border-bottom:1px solid var(--border);font-size:.78rem;
+}
+.tip-item:last-child{border-bottom:none}
+.tip-icon{font-size:1rem;flex-shrink:0;margin-top:1px}
+
+/* ===== EDITABLE NOTE (for future customization) ===== */
+.custom-note{
+  border:1.5px dashed #f59e0b;border-radius:10px;
+  padding:.6rem .8rem;margin:.5rem 0;
+  background:#fffbeb;font-size:.75rem;color:#78350f;
+  min-height:60px;cursor:text;
+  outline:none;
+  white-space:pre-wrap;word-break:break-word;
+}
+.custom-note:empty::before{
+  content:'📝 点击此处添加个人备注…';
+  color:#b45309;opacity:.6;
+}
+.add-note-btn{
+  display:flex;align-items:center;justify-content:center;gap:5px;
+  width:100%;padding:8px;border-radius:10px;
+  border:1.5px dashed #d1d5db;background:transparent;
+  font-size:.75rem;color:var(--muted);margin-top:.5rem;
+  cursor:pointer;transition:all .15s;
+}
+.add-note-btn:active{background:var(--bg)}
+
+/* ===== URGENT BANNER ===== */
+.urgent-banner{
+  background:#fef2f2;border:1.5px solid #fca5a5;
+  border-radius:12px;padding:.8rem .9rem;margin-bottom:.75rem;
+}
+.urgent-banner h3{font-size:.82rem;font-weight:800;color:#b91c1c;margin-bottom:3px}
+.urgent-banner p{font-size:.72rem;color:#7f1d1d;line-height:1.5}
+
+/* ===== TRANSPORT ===== */
+.tr-card{
+  background:#fff;border-radius:12px;border:1px solid var(--border);
+  padding:.75rem .9rem;margin-bottom:.6rem;
+  display:flex;gap:12px;box-shadow:var(--card-shadow);
+}
+.tr-icon{font-size:1.4rem;flex-shrink:0;margin-top:2px}
+.tr-body h4{font-size:.82rem;font-weight:700;margin-bottom:3px}
+.tr-body p{font-size:.75rem;color:#374151;line-height:1.55}
+
+/* ===== COST SUMMARY ===== */
+.cost-card{
+  background:#fff;border-radius:12px;border:1px solid var(--border);
+  box-shadow:var(--card-shadow);margin-bottom:.6rem;overflow:hidden;
+}
+.cost-hdr{
+  background:linear-gradient(135deg,#1a1a2e,#2d3a6e);
+  color:#fff;padding:.65rem .9rem;
+  font-size:.78rem;font-weight:700;
+}
+.cost-body{padding:.5rem .9rem}
+
+/* ===== WEATHER BAR ===== */
+.weather-bar{
+  display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;
+  margin-bottom:.6rem;-webkit-overflow-scrolling:touch;
+}
+.w-item{
+  flex-shrink:0;text-align:center;background:#fff;
+  border-radius:10px;border:1px solid var(--border);
+  padding:.5rem .7rem;min-width:68px;
+}
+.w-city{font-size:.65rem;font-weight:700;color:var(--muted)}
+.w-temp{font-size:.9rem;font-weight:800}
+.w-desc{font-size:.62rem;color:var(--muted)}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar{width:0;height:0}
+
+/* ===== DESKTOP ADJUSTMENTS ===== */
+@media(min-width:640px){
+  .content{padding:1rem 1.25rem calc(5rem + var(--safe-bottom))}
+  .day-hdr{padding:.85rem 1.1rem}
+  .day-body{padding:0 1.1rem 1.1rem}
+  .tl-name{font-size:.9rem}
+  .tl-desc{font-size:.8rem}
+  body{font-size:17px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="hero-flags">🇪🇸 🇫🇷 🇮🇹</div>
+  <h1>南欧三国旅游攻略 2025</h1>
+  <p class="hero-sub">Madrid · Paris · Roma · Milano · Jun 17–28</p>
+  <div class="hero-chips">
+    <span class="hero-chip">📅 11晚12天</span>
+    <span class="hero-chip">👥 2人旅行</span>
+    <span class="hero-chip">💰 €2000–2800预算/人</span>
+    <span class="hero-chip">✈ 申根签证</span>
+  </div>
+</header>
+
+<!-- ===== EDIT NOTICE ===== -->
+<div class="edit-notice">
+  💡 <strong>本地编辑说明：</strong>用浏览器直接打开此HTML文件，所有「📝 添加备注」区域可点击输入个人笔记（仅当次有效）。如需永久修改，可用记事本/VS Code打开此文件编辑HTML内容。每个景点均有Google Maps链接。
+</div>
+
+<!-- ===== ROUTE BAR ===== -->
+<nav class="route-bar">
+  <div class="rc madrid" onclick="jumpCity('madrid')"><span class="cn">🇪🇸 马德里</span><span class="cd">Jun 17–19</span></div>
+  <span class="ra">✈</span>
+  <div class="rc paris" onclick="jumpCity('paris')"><span class="cn">🇫🇷 巴黎</span><span class="cd">Jun 19–22</span></div>
+  <span class="ra">✈</span>
+  <div class="rc rome" onclick="jumpCity('rome')"><span class="cn">🇮🇹 罗马</span><span class="cd">Jun 22–25</span></div>
+  <span class="ra">🚄</span>
+  <div class="rc milan" onclick="jumpCity('milan')"><span class="cn">🇮🇹 米兰</span><span class="cd">Jun 25–28</span></div>
+</nav>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div class="content">
+
+<!-- ==================== TAB: DAYS ==================== -->
+<div class="tab-pane active" id="pane-days">
+
+<!-- 6月天气速览 -->
+<div class="weather-bar">
+  <div class="w-item"><div class="w-city">马德里</div><div class="w-temp">☀️33°C</div><div class="w-desc">干热晴</div></div>
+  <div class="w-item"><div class="w-city">巴黎</div><div class="w-temp">⛅23°C</div><div class="w-desc">偶有雨</div></div>
+  <div class="w-item"><div class="w-city">罗马</div><div class="w-temp">☀️31°C</div><div class="w-desc">晴热</div></div>
+  <div class="w-item"><div class="w-city">米兰</div><div class="w-temp">🌤28°C</div><div class="w-desc">晴为主</div></div>
+</div>
+
+<!-- ===== MADRID ===== -->
+<div class="city-section" id="city-madrid">
+<div class="city-hdr madrid">
+  <div class="city-hdr-emoji">🇪🇸</div>
+  <div class="city-hdr-text">
+    <h2>马德里 Madrid</h2>
+    <p>Jun 17–19 · 2晚 · 西班牙首都，艺术与激情之城</p>
+  </div>
+</div>
+
+<!-- Day 1 -->
+<div class="day-card">
+  <div class="day-hdr" onclick="toggleDay(this)">
+    <div class="day-left">
+      <div class="day-badge madrid">1</div>
+      <div class="day-title"><h3>6月17日（周二）· 抵达马德里</h3><p>14:00落地，轻松入城 · Arrival Day</p></div>
+    </div>
+    <span class="day-chevron">▾</span>
+  </div>
+  <div class="day-body">
+    <div class="plan-toggle">
+      <button class="pt-btn active" onclick="switchPlan(this,'d1a')">☀️ 方案A 正常天气</button>
+      <button class="pt-btn" onclick="switchPlan(this,'d1b')">🌧 方案B 阴雨天</button>
+    </div>
+    <div class="plan-pane active" id="d1a">
+      <a class="route-btn" href="https://www.google.com/maps/dir/Adolfo+Suárez+Madrid-Barajas+Airport/Parque+del+Retiro+Madrid/Plaza+Mayor+Madrid" target="_blank">📍 今日Google路线（机场→丽池公园→马约尔广场）</a>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">14:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">🛬 巴拉哈斯机场入境 <a class="ml" href="https://maps.google.com/?q=Adolfo+Suarez+Madrid-Barajas+Airport" target="_blank">📍</a></div>
+          <div class="tl-en">Adolfo Suárez Madrid-Barajas Airport (MAD)</div>
+          <div class="tl-desc">过海关→领行李→乘地铁8号线→2号线到Sol站，约45分钟。建议入住Gran Vía或Sol广场附近。</div>
+          <div class="tags"><span class="tag tt">地铁8号线→2号线</span><span class="tag tp">€5/人（含机场附加费）</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">16:30</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">丽池公园 + 水晶宫 <a class="ml" href="https://maps.google.com/?q=Parque+del+Retiro,+Madrid" target="_blank">📍</a></div>
+          <div class="tl-en">Parque del Retiro & Palacio de Cristal</div>
+          <div class="tl-desc">入住后散步，玻璃温室（水晶宫）非常上镜，完全免费。6月阳光充足，公园氛围极好。</div>
+          <div class="tags"><span class="tag tf">免费</span><span class="tag tt">建议1.5小时</span></div>
+          <div class="cost-card" style="margin-top:8px"><div class="cost-hdr">💰 今日花费参考</div><div class="cost-body">
+            <div class="cost-row"><span class="cost-label">地铁（机场→市区）</span><span class="cost-val">€5/人</span></div>
+            <div class="cost-row"><span class="cost-label">晚餐Tapas</span><span class="cost-val">€15–25/人</span></div>
+          </div></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">19:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">马约尔广场 + Cava Baja街Tapas <a class="ml" href="https://maps.google.com/?q=Plaza+Mayor,+Madrid" target="_blank">📍</a></div>
+          <div class="tl-en">Plaza Mayor & Tapas at Calle de la Cava Baja</div>
+          <div class="tl-desc">西班牙晚饭21:00才是高峰，先拍照再去Cava Baja街找Tapas酒吧，人均€15–25就能吃很满足。</div>
+          <div class="tags"><span class="tag tf">广场免费</span><span class="tag to">晚餐€15–25/人</span></div>
+        </div>
+      </div>
+      <button class="add-note-btn" onclick="addNote(this)">📝 添加个人备注</button>
+    </div>
+    <div class="plan-pane" id="d1b">
+      <a class="route-btn" href="https://www.google.com/maps/dir/Adolfo+Suarez+Madrid-Barajas+Airport/Museo+Thyssen-Bornemisza+Madrid/Gran+Via+Madrid" target="_blank">📍 雨天路线（机场→提森博物馆→Gran Vía）</a>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">14:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body"><div class="tl-name">抵达 + 入住</div><div class="tl-desc">同方案A，地铁进城。</div></div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">17:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">提森-博内米萨博物馆 <a class="ml" href="https://maps.google.com/?q=Museo+Thyssen-Bornemisza,+Madrid" target="_blank">📍</a></div>
+          <div class="tl-desc">欧洲私人收藏最丰富博物馆之一，从文艺复兴到现代派，雨天完美选择。<br>官网：<a href="https://www.museothyssen.org" target="_blank" style="color:#4285f4">museothyssen.org</a>，€14；周一免费。</div>
+          <div class="tags"><span class="tag tp">€14，周一免费</span><span class="tag tt">建议2小时</span></div>
+        </div>
+      </div>
+      <button class="add-note-btn" onclick="addNote(this)">📝 添加个人备注</button>
+    </div>
+  </div>
+</div>
+
+<!-- Day 2 -->
+<div class="day-card">
+  <div class="day-hdr" onclick="toggleDay(this)">
+    <div class="day-left">
+      <div class="day-badge madrid">2</div>
+      <div class="day-title"><h3>6月18日（周三）· 马德里精华日</h3><p>普拉多 + 王宫 + 埃及神庙日落</p></div>
+    </div>
+    <span class="day-chevron">▾</span>
+  </div>
+  <div class="day-body">
+    <div class="plan-toggle">
+      <button class="pt-btn active" onclick="switchPlan(this,'d2a')">☀️ 方案A 晴天经典线</button>
+      <button class="pt-btn" onclick="switchPlan(this,'d2b')">🌧 方案B 博物馆三连</button>
+    </div>
+    <div class="plan-pane active" id="d2a">
+      <a class="route-btn" href="https://www.google.com/maps/dir/Museo+del+Prado+Madrid/Mercado+San+Miguel+Madrid/Palacio+Real+Madrid/Catedral+Almudena+Madrid/Templo+de+Debod+Madrid" target="_blank">📍 今日5站串联路线 Google Maps</a>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">09:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">⭐ 普拉多博物馆 <a class="ml" href="https://maps.google.com/?q=Museo+del+Prado,+Madrid" target="_blank">📍</a></div>
+          <div class="tl-en">Museo Nacional del Prado — Must-see!</div>
+          <div class="tl-desc">世界顶级艺术馆！重点：维拉斯克斯《宫娥》、戈雅黑色画。9点开门人最少。<br>预约：<a href="https://www.museodelprado.es/en/visit/tickets" target="_blank" style="color:#4285f4">museodelprado.es</a></div>
+          <div class="tags"><span class="tag tb">⚠️ 强烈建议提前购票</span><span class="tag tp">€15/人</span><span class="tag tt">3小时</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">12:30</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">圣米格尔市场午餐 <a class="ml" href="https://maps.google.com/?q=Mercado+San+Miguel+Madrid" target="_blank">📍</a></div>
+          <div class="tl-desc">马德里最著名室内美食市场，各种Tapas小食。从普拉多步行15分钟。</div>
+          <div class="tags"><span class="tag to">€15–20/人</span><span class="tag tt">1小时</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">14:30</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">⭐ 马德里王宫 <a class="ml" href="https://maps.google.com/?q=Palacio+Real+de+Madrid" target="_blank">📍</a></div>
+          <div class="tl-en">Palacio Real de Madrid</div>
+          <div class="tl-desc">欧洲最大皇宫，内部金碧辉煌约3000房间。预约：<a href="https://entradas.patrimonionacional.es" target="_blank" style="color:#4285f4">patrimonionacional.es</a>，€13/人。</div>
+          <div class="tags"><span class="tag tw">建议提前购票</span><span class="tag tp">€13/人</span><span class="tag tt">1.5小时</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">17:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">阿尔穆德纳大教堂 <a class="ml" href="https://maps.google.com/?q=Catedral+Almudena+Madrid" target="_blank">📍</a></div>
+          <div class="tl-desc">紧邻王宫，免费，外广场俯瞰曼萨纳雷斯河谷，绝佳拍照地。</div>
+          <div class="tags"><span class="tag tf">免费</span><span class="tag tt">45分钟</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">19:30</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">德波神庙日落 <a class="ml" href="https://maps.google.com/?q=Templo+de+Debod,+Madrid" target="_blank">📍</a></div>
+          <div class="tl-en">Templo de Debod — Sunset Viewpoint</div>
+          <div class="tl-desc">古埃及神庙，俯瞰马德里全景，6月日落约21:30，提前15分钟到占位。</div>
+          <div class="tags"><span class="tag tf">免费</span><span class="tag ti">提前15min到</span></div>
+          <div class="cost-card" style="margin-top:8px"><div class="cost-hdr">💰 今日花费参考</div><div class="cost-body">
+            <div class="cost-row"><span class="cost-label">普拉多博物馆</span><span class="cost-val">€15/人</span></div>
+            <div class="cost-row"><span class="cost-label">午餐（圣米格尔市场）</span><span class="cost-val">€15–20/人</span></div>
+            <div class="cost-row"><span class="cost-label">马德里王宫</span><span class="cost-val">€13/人</span></div>
+            <div class="cost-row"><span class="cost-label">晚餐</span><span class="cost-val">€20–30/人</span></div>
+            <div class="cost-row"><span class="cost-label">合计/人</span><span class="cost-val">约€63–78</span></div>
+          </div></div>
+        </div>
+      </div>
+      <button class="add-note-btn" onclick="addNote(this)">📝 添加个人备注</button>
+    </div>
+    <div class="plan-pane" id="d2b">
+      <a class="route-btn" href="https://www.google.com/maps/dir/Museo+del+Prado+Madrid/Palacio+Real+Madrid/Museo+Reina+Sofia+Madrid" target="_blank">📍 雨天路线（普拉多→王宫→索菲亚）</a>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">09:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">⭐ 普拉多博物馆 <a class="ml" href="https://maps.google.com/?q=Museo+del+Prado,+Madrid" target="_blank">📍</a></div>
+          <div class="tl-desc">雨天放慢节奏，多花时间在每幅画前。museodelprado.es，€15/人。</div>
+          <div class="tags"><span class="tag tb">⚠️ 提前购票</span><span class="tag tp">€15/人</span><span class="tag tt">3.5小时</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">13:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">午餐 + 王宫 <a class="ml" href="https://maps.google.com/?q=Palacio+Real+de+Madrid" target="_blank">📍</a></div>
+          <div class="tl-desc">王宫室内不受天气影响，雨天人反而少。patrimonionacional.es，€13/人。</div>
+          <div class="tags"><span class="tag tp">€13/人</span><span class="tag tt">1.5小时</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">16:30</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">索菲亚王后艺术中心（看格尔尼卡）<a class="ml" href="https://maps.google.com/?q=Museo+Reina+Sofia,+Madrid" target="_blank">📍</a></div>
+          <div class="tl-en">Museo Reina Sofía — Picasso's Guernica</div>
+          <div class="tl-desc">毕加索《格尔尼卡》原作在此！周六14:00后及周日全天免费。museoreinasofia.es，€12。</div>
+          <div class="tags"><span class="tag tp">€12，周六下午/周日免费</span><span class="tag tt">2小时</span></div>
+        </div>
+      </div>
+      <button class="add-note-btn" onclick="addNote(this)">📝 添加个人备注</button>
+    </div>
+  </div>
+</div>
+
+<!-- Day 3: Madrid → Paris -->
+<div class="day-card">
+  <div class="day-hdr" onclick="toggleDay(this)">
+    <div class="day-left">
+      <div class="day-badge madrid">3</div>
+      <div class="day-title"><h3>6月19日（周四）· 马德里→巴黎</h3><p>✈ 上午出发，下午抵达巴黎 · Flight Day</p></div>
+    </div>
+    <span class="day-chevron">▾</span>
+  </div>
+  <div class="day-body">
+    <!-- 航班信息卡 -->
+    <div class="flight-card">
+      <div class="flight-top">
+        <div class="flight-icon">✈</div>
+        <div>
+          <div class="flight-route">马德里（MAD）→ 巴黎戴高乐（CDG）</div>
+          <div class="flight-date">Jun 19，建议08:00–10:00出发</div>
+        </div>
+      </div>
+      <div class="flight-body">
+        <div class="flight-row"><span class="flight-label">飞行时间</span><span class="flight-val">约2小时直飞</span></div>
+        <div class="flight-row"><span class="flight-label">推荐航司</span><span class="flight-val">Iberia / Vueling / Air France</span></div>
+        <div class="flight-row"><span class="flight-label">参考票价</span><span class="flight-val">€80–150/人（提前购）</span></div>
+        <div class="flight-row"><span class="flight-label">CDG→市区</span><span class="flight-val">RER B线 40min，€11.4/人</span></div>
+        <div class="flight-row"><span class="flight-label">建议入住区域</span><span class="flight-val">圣日耳曼（6区）/ 玛黑（4区）</span></div>
+        <a class="flight-link" href="https://www.google.com/flights?q=MAD+to+CDG" target="_blank">🔍 Google Flights 查看实时航班</a>
+      </div>
+    </div>
+    <div class="plan-toggle">
+      <button class="pt-btn active" onclick="switchPlan(this,'d3a')">☀️ 方案A 傍晚探索</button>
+      <button class="pt-btn" onclick="switchPlan(this,'d3b')">🌧 方案B 室内开局</button>
+    </div>
+    <div class="plan-pane active" id="d3a">
+      <a class="route-btn" href="https://www.google.com/maps/dir/Charles+de+Gaulle+Airport/Notre-Dame+Cathedral+Paris/Le+Marais+Paris/Trocadero+Paris" target="_blank">📍 抵达后路线（CDG→圣母院→玛黑→铁塔）</a>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">13:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">抵达CDG，RER B线进城</div>
+          <div class="tl-desc">乘RER B线约40分钟到市区，€11.4/人。入住、简单午餐，下午出发探索。</div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">15:30</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">巴黎圣母院（2024年12月重开！）<a class="ml" href="https://maps.google.com/?q=Notre-Dame+Cathedral,+Paris" target="_blank">📍</a></div>
+          <div class="tl-en">Cathédrale Notre-Dame de Paris — Reopened Dec 2024!</div>
+          <div class="tl-desc">2019年大火后历史性重开，是这次旅程的特别时刻。塞纳河沿岸漫步，体验巴黎初印象。内部参观建议在 notredamedeparis.fr 提前预约免费票。</div>
+          <div class="tags"><span class="tag tw">建议提前预约免费票</span><span class="tag tf">免费</span><span class="tag tt">1.5小时</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">18:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">玛黑区（Le Marais）漫游 + Falafel <a class="ml" href="https://maps.google.com/?q=Le+Marais,+Paris" target="_blank">📍</a></div>
+          <div class="tl-desc">孚日广场（Place des Vosges）必打卡，周边潮流小店、画廊云集。晚餐去L'As du Fallafel（Rue des Rosiers 34），€8–10吃饱。</div>
+          <div class="tags"><span class="tag tf">广场免费</span><span class="tag to">Falafel €8–10</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">21:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">⭐ 埃菲尔铁塔闪灯（Trocadéro观景）<a class="ml" href="https://maps.google.com/?q=Trocadero,+Paris" target="_blank">📍</a></div>
+          <div class="tl-desc">铁塔每小时整点后5分钟闪灯表演，Trocadéro广场完全免费，6月日落约21:45，时机完美！</div>
+          <div class="tags"><span class="tag tf">外观免费</span><span class="tag tw">登顶需提前预约 toureiffel.paris</span></div>
+          <div class="cost-card" style="margin-top:8px"><div class="cost-hdr">💰 今日花费参考</div><div class="cost-body">
+            <div class="cost-row"><span class="cost-label">机票（MAD→CDG）</span><span class="cost-val">€80–150/人</span></div>
+            <div class="cost-row"><span class="cost-label">RER B（CDG→市区）</span><span class="cost-val">€11.4/人</span></div>
+            <div class="cost-row"><span class="cost-label">午餐+晚餐</span><span class="cost-val">€20–30/人</span></div>
+            <div class="cost-row"><span class="cost-label">合计/人（不含机票）</span><span class="cost-val">约€30–40</span></div>
+          </div></div>
+        </div>
+      </div>
+      <button class="add-note-btn" onclick="addNote(this)">📝 添加个人备注</button>
+    </div>
+    <div class="plan-pane" id="d3b">
+      <a class="route-btn" href="https://www.google.com/maps/dir/Charles+de+Gaulle+Airport/Musee+d+Orsay+Paris" target="_blank">📍 雨天路线（CDG→奥赛博物馆）</a>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">13:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body"><div class="tl-name">抵达 + 法式午餐</div><div class="tl-desc">找家法式小馆，点Steak frites或Croque Monsieur，感受巴黎日常。€15–25/人。</div></div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">15:30</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">奥赛博物馆 <a class="ml" href="https://maps.google.com/?q=Musée+d'Orsay,+Paris" target="_blank">📍</a></div>
+          <div class="tl-desc">印象派圣殿，莫奈/梵高/雷诺阿在此。预约：musee-orsay.fr，€16/人，可省排队时间。</div>
+          <div class="tags"><span class="tag tw">建议提前购票</span><span class="tag tp">€16/人</span><span class="tag tt">2–2.5小时</span></div>
+        </div>
+      </div>
+      <button class="add-note-btn" onclick="addNote(this)">📝 添加个人备注</button>
+    </div>
+  </div>
+</div>
+</div><!-- end city-madrid -->
+
+<!-- ===== PARIS ===== -->
+<div class="city-section" id="city-paris">
+<div class="city-hdr paris">
+  <div class="city-hdr-emoji">🇫🇷</div>
+  <div class="city-hdr-text">
+    <h2>巴黎 Paris</h2>
+    <p>Jun 19–22 · 3晚 · 光之城，印象派与浪漫的故乡</p>
+  </div>
+</div>
+
+<!-- Day 4 -->
+<div class="day-card">
+  <div class="day-hdr" onclick="toggleDay(this)">
+    <div class="day-left">
+      <div class="day-badge paris">4</div>
+      <div class="day-title"><h3>6月20日（周五）· 巴黎核心打卡</h3><p>卢浮宫 + 香榭丽舍 + 凯旋门</p></div>
+    </div>
+    <span class="day-chevron">▾</span>
+  </div>
+  <div class="day-body">
+    <div class="plan-toggle">
+      <button class="pt-btn active" onclick="switchPlan(this,'d4a')">☀️ 方案A 经典大环线</button>
+      <button class="pt-btn" onclick="switchPlan(this,'d4b')">🌧 方案B 博物馆双打</button>
+    </div>
+    <div class="plan-pane active" id="d4a">
+      <a class="route-btn" href="https://www.google.com/maps/dir/Musee+du+Louvre+Paris/Jardin+des+Tuileries+Paris/Champs+Elysees+Paris/Arc+de+Triomphe+Paris/Eiffel+Tower+Paris" target="_blank">📍 今日5站串联路线（卢浮宫→花园→香榭→凯旋门→铁塔）</a>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">09:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">⭐ 卢浮宫 <a class="ml" href="https://maps.google.com/?q=Musée+du+Louvre,+Paris" target="_blank">📍</a></div>
+          <div class="tl-en">Musée du Louvre — World's Largest Museum</div>
+          <div class="tl-desc">全球最大博物馆！重点：蒙娜丽莎、断臂维纳斯、胜利女神。9点开门人最少。<br>预约：<a href="https://www.ticketlouvre.fr" target="_blank" style="color:#4285f4">ticketlouvre.fr</a>，€22/人，⚠️不买票排队2–3小时。</div>
+          <div class="tags"><span class="tag tb">⚠️ 必须提前购票</span><span class="tag tp">€22/人</span><span class="tag tt">3–3.5小时</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">13:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">杜乐丽花园午餐 <a class="ml" href="https://maps.google.com/?q=Jardin+des+Tuileries,+Paris" target="_blank">📍</a></div>
+          <div class="tl-desc">卢浮宫出来穿越花园，露天咖啡馆午餐，法式长棍+饮料，感受巴黎悠闲。</div>
+          <div class="tags"><span class="tag tf">公园免费</span><span class="tag to">午餐€12–20/人</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">15:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">香榭丽舍 → 凯旋门登顶 <a class="ml" href="https://maps.google.com/?q=Arc+de+Triomphe,+Paris" target="_blank">📍</a></div>
+          <div class="tl-en">Champs-Élysées & Arc de Triomphe</div>
+          <div class="tl-desc">步行香榭丽舍，登顶凯旋门俯瞰12条大道汇聚。预约：<a href="https://www.paris-arc-de-triomphe.fr" target="_blank" style="color:#4285f4">paris-arc-de-triomphe.fr</a>，€13/人。</div>
+          <div class="tags"><span class="tag tw">建议提前购票</span><span class="tag tp">€13/人</span><span class="tag tt">1.5小时</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">18:30</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">⭐ 埃菲尔铁塔（登顶或观景）<a class="ml" href="https://maps.google.com/?q=Eiffel+Tower,+Paris" target="_blank">📍</a></div>
+          <div class="tl-en">La Tour Eiffel</div>
+          <div class="tl-desc">登顶预约：<a href="https://www.toureiffel.paris" target="_blank" style="color:#4285f4">toureiffel.paris</a>，€19–29。或Trocadéro广场免费观赏整点闪灯。</div>
+          <div class="tags"><span class="tag tb">登顶需提前预约</span><span class="tag tp">€19–29</span><span class="tag tf">外观+广场免费</span></div>
+          <div class="cost-card" style="margin-top:8px"><div class="cost-hdr">💰 今日花费参考</div><div class="cost-body">
+            <div class="cost-row"><span class="cost-label">卢浮宫</span><span class="cost-val">€22/人</span></div>
+            <div class="cost-row"><span class="cost-label">午餐</span><span class="cost-val">€12–20/人</span></div>
+            <div class="cost-row"><span class="cost-label">凯旋门</span><span class="cost-val">€13/人</span></div>
+            <div class="cost-row"><span class="cost-label">铁塔登顶（可选）</span><span class="cost-val">€19–29/人</span></div>
+            <div class="cost-row"><span class="cost-label">晚餐</span><span class="cost-val">€20–35/人</span></div>
+            <div class="cost-row"><span class="cost-label">合计/人</span><span class="cost-val">约€67–99</span></div>
+          </div></div>
+        </div>
+      </div>
+      <button class="add-note-btn" onclick="addNote(this)">📝 添加个人备注</button>
+    </div>
+    <div class="plan-pane" id="d4b">
+      <a class="route-btn" href="https://www.google.com/maps/dir/Musee+du+Louvre+Paris/Musee+d+Orsay+Paris" target="_blank">📍 雨天双博物馆路线</a>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">09:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">⭐ 卢浮宫（雨天更舒适）<a class="ml" href="https://maps.google.com/?q=Musée+du+Louvre,+Paris" target="_blank">📍</a></div>
+          <div class="tl-desc">雨天反而可以慢慢欣赏，人少一点。ticketlouvre.fr，€22/人。</div>
+          <div class="tags"><span class="tag tb">⚠️ 必须提前购票</span><span class="tag tp">€22/人</span><span class="tag tt">3.5–4小时</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">14:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">奥赛博物馆（过桥即到）<a class="ml" href="https://maps.google.com/?q=Musée+d'Orsay,+Paris" target="_blank">📍</a></div>
+          <div class="tl-desc">卢浮宫对岸步行即到，雨天两馆连打。musee-orsay.fr，€16/人。</div>
+          <div class="tags"><span class="tag tp">€16/人</span><span class="tag tt">2小时</span></div>
+        </div>
+      </div>
+      <button class="add-note-btn" onclick="addNote(this)">📝 添加个人备注</button>
+    </div>
+  </div>
+</div>
+
+<!-- Day 5 -->
+<div class="day-card">
+  <div class="day-hdr" onclick="toggleDay(this)">
+    <div class="day-left">
+      <div class="day-badge paris">5</div>
+      <div class="day-title"><h3>6月21日（周六）· 蒙马特 + 左岸</h3><p>圣心堂 + 左岸咖啡 + 卢森堡公园</p></div>
+    </div>
+    <span class="day-chevron">▾</span>
+  </div>
+  <div class="day-body">
+    <div class="plan-toggle">
+      <button class="pt-btn active" onclick="switchPlan(this,'d5a')">☀️ 方案A 蒙马特+左岸</button>
+      <button class="pt-btn" onclick="switchPlan(this,'d5b')">🌧 方案B 蓬皮杜+玛黑</button>
+    </div>
+    <div class="plan-pane active" id="d5a">
+      <a class="route-btn" href="https://www.google.com/maps/dir/Sacre+Coeur+Paris/Place+du+Tertre+Paris/Cafe+de+Flore+Paris/Jardin+du+Luxembourg+Paris" target="_blank">📍 今日路线（蒙马特→左岸）Google Maps</a>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">09:30</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">⭐ 蒙马特 + 圣心圣殿 <a class="ml" href="https://maps.google.com/?q=Sacré-Cœur+Basilica,+Paris" target="_blank">📍</a></div>
+          <div class="tl-en">Montmartre & Sacré-Cœur — Early Morning!</div>
+          <div class="tl-desc">早上避开人群！石板路、艺术家、街头画廊，圣心堂登顶俯瞰全城。上山缆车€2.15或爬台阶。画家广场看现场作画。</div>
+          <div class="tags"><span class="tag tf">教堂免费</span><span class="tag ti">缆车€2.15</span><span class="tag tt">2.5小时</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">12:30</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">蒙马特午餐 <a class="ml" href="https://maps.google.com/?q=Montmartre,+Paris" target="_blank">📍</a></div>
+          <div class="tl-desc">高地有不少地道法式小馆，午餐后再逛一圈，下午乘Metro到左岸。</div>
+          <div class="tags"><span class="tag to">€20–30/人</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">15:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">Café de Flore下午茶 <a class="ml" href="https://maps.google.com/?q=Café+de+Flore,+Paris" target="_blank">📍</a></div>
+          <div class="tl-en">Saint-Germain-des-Prés — Left Bank Culture</div>
+          <div class="tl-desc">萨特、波伏瓦常来的咖啡馆，体验巴黎文学左岸氛围，价格略高但值得一次。</div>
+          <div class="tags"><span class="tag to">咖啡€6–8</span><span class="tag ti">体验>价格</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">17:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">卢森堡公园散步 <a class="ml" href="https://maps.google.com/?q=Jardin+du+Luxembourg,+Paris" target="_blank">📍</a></div>
+          <div class="tl-desc">巴黎最美法式园林，坐铁椅子晒太阳，感受真正的巴黎下午。</div>
+          <div class="tags"><span class="tag tf">免费</span><span class="tag tt">1小时</span></div>
+          <div class="cost-card" style="margin-top:8px"><div class="cost-hdr">💰 今日花费参考</div><div class="cost-body">
+            <div class="cost-row"><span class="cost-label">蒙马特缆车</span><span class="cost-val">€2.15/人</span></div>
+            <div class="cost-row"><span class="cost-label">午餐+下午茶+晚餐</span><span class="cost-val">€35–50/人</span></div>
+            <div class="cost-row"><span class="cost-label">合计/人</span><span class="cost-val">约€37–52</span></div>
+          </div></div>
+        </div>
+      </div>
+      <button class="add-note-btn" onclick="addNote(this)">📝 添加个人备注</button>
+    </div>
+    <div class="plan-pane" id="d5b">
+      <a class="route-btn" href="https://www.google.com/maps/dir/Centre+Pompidou+Paris/Le+Marais+Paris" target="_blank">📍 雨天路线（蓬皮杜→玛黑）</a>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">10:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">蓬皮杜艺术中心 <a class="ml" href="https://maps.google.com/?q=Centre+Pompidou,+Paris" target="_blank">📍</a></div>
+          <div class="tl-en">Centre Pompidou — Modern Art Museum</div>
+          <div class="tl-desc">欧洲最大现代艺术馆，建筑本身就是奇观。centrepompidou.fr，€15/人。</div>
+          <div class="tags"><span class="tag tp">€15/人</span><span class="tag tt">2小时</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">13:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">玛黑区美食探索 + 购物 <a class="ml" href="https://maps.google.com/?q=Rue+des+Rosiers,+Paris" target="_blank">📍</a></div>
+          <div class="tl-desc">L'As du Fallafel（Rue des Rosiers 34，€8–10）、奶酪店、甜点店、各种独立品牌小店，完全室内体验。</div>
+          <div class="tags"><span class="tag to">€10–20/人</span></div>
+        </div>
+      </div>
+      <button class="add-note-btn" onclick="addNote(this)">📝 添加个人备注</button>
+    </div>
+  </div>
+</div>
+
+<!-- Day 6: Paris → Rome -->
+<div class="day-card">
+  <div class="day-hdr" onclick="toggleDay(this)">
+    <div class="day-left">
+      <div class="day-badge paris">6</div>
+      <div class="day-title"><h3>6月22日（周日）· 巴黎→罗马</h3><p>✈ 上午出发，下午抵达永恒之城</p></div>
+    </div>
+    <span class="day-chevron">▾</span>
+  </div>
+  <div class="day-body">
+    <div class="flight-card">
+      <div class="flight-top">
+        <div class="flight-icon">✈</div>
+        <div>
+          <div class="flight-route">巴黎戴高乐（CDG）→ 罗马FCO</div>
+          <div class="flight-date">Jun 22，建议08:00–10:00出发</div>
+        </div>
+      </div>
+      <div class="flight-body">
+        <div class="flight-row"><span class="flight-label">飞行时间</span><span class="flight-val">约2小时直飞</span></div>
+        <div class="flight-row"><span class="flight-label">推荐航司</span><span class="flight-val">Air France / Vueling / easyJet</span></div>
+        <div class="flight-row"><span class="flight-label">参考票价</span><span class="flight-val">€80–130/人</span></div>
+        <div class="flight-row"><span class="flight-label">FCO→市区（推荐）</span><span class="flight-val">Leonardo Express 32min，€14/人</span></div>
+        <div class="flight-row"><span class="flight-label">FCO→市区（省钱）</span><span class="flight-val">机场大巴约1h，€6/人</span></div>
+        <div class="flight-row"><span class="flight-label">⚠️ 注意</span><span class="flight-val">周日万神庙关闭</span></div>
+        <a class="flight-link" href="https://www.google.com/flights?q=CDG+to+FCO" target="_blank">🔍 Google Flights 查看实时航班</a>
+      </div>
+    </div>
+    <div class="plan-toggle">
+      <button class="pt-btn active" onclick="switchPlan(this,'d6a')">☀️ 方案A 历史广场漫步</button>
+      <button class="pt-btn" onclick="switchPlan(this,'d6b')">🌧 方案B 室内博物馆</button>
+    </div>
+    <div class="plan-pane active" id="d6a">
+      <a class="route-btn" href="https://www.google.com/maps/dir/Fiumicino+Airport/Piazza+Navona+Rome/Fontana+di+Trevi+Rome" target="_blank">📍 抵达后路线（FCO→纳沃纳→许愿池）</a>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">13:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body"><div class="tl-name">抵达罗马 + 入住 + 午餐</div><div class="tl-desc">第一顿意面：点Cacio e Pepe（奶酪黑胡椒）或Carbonara（蛋黄培根），感受罗马正宗味道。</div><div class="tags"><span class="tag to">午餐€15–25/人</span></div></div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">15:30</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">⭐ 纳沃纳广场 <a class="ml" href="https://maps.google.com/?q=Piazza+Navona,+Rome" target="_blank">📍</a></div>
+          <div class="tl-en">Piazza Navona — Baroque Fountains</div>
+          <div class="tl-desc">罗马最美广场，贝尼尼《四河喷泉》是绝对主角。步行10分钟到万神庙方向（但周日关闭，可看外观）。</div>
+          <div class="tags"><span class="tag tf">免费</span><span class="tag tt">1小时</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">19:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">⭐ 特雷维喷泉夜景 <a class="ml" href="https://maps.google.com/?q=Trevi+Fountain,+Rome" target="_blank">📍</a></div>
+          <div class="tl-en">Fontana di Trevi</div>
+          <div class="tl-desc">灯光打亮后更壮观！投硬币许愿，⚠️周边扒手多，管好手机和钱包。</div>
+          <div class="tags"><span class="tag tf">免费</span><span class="tag tb">⚠️注意扒手</span></div>
+          <div class="cost-card" style="margin-top:8px"><div class="cost-hdr">💰 今日花费参考</div><div class="cost-body">
+            <div class="cost-row"><span class="cost-label">机票（CDG→FCO）</span><span class="cost-val">€80–130/人</span></div>
+            <div class="cost-row"><span class="cost-label">Leonardo Express</span><span class="cost-val">€14/人</span></div>
+            <div class="cost-row"><span class="cost-label">午餐+晚餐</span><span class="cost-val">€30–50/人</span></div>
+          </div></div>
+        </div>
+      </div>
+      <button class="add-note-btn" onclick="addNote(this)">📝 添加个人备注</button>
+    </div>
+    <div class="plan-pane" id="d6b">
+      <a class="route-btn" href="https://www.google.com/maps/dir/Fiumicino+Airport/Capitoline+Museums+Rome/Piazza+Navona+Rome" target="_blank">📍 雨天路线</a>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">13:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body"><div class="tl-name">抵达 + 入住 + 午餐</div><div class="tl-desc">找家好意式餐馆，好好的第一顿意面。€15–25/人。</div></div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">15:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">卡比托利欧博物馆 <a class="ml" href="https://maps.google.com/?q=Capitoline+Museums,+Rome" target="_blank">📍</a></div>
+          <div class="tl-en">Capitoline Museums — World's Oldest Public Museum</div>
+          <div class="tl-desc">世界最古老公共博物馆，古罗马雕塑云集，游客比其他大馆少许多。€15/人。</div>
+          <div class="tags"><span class="tag tp">€15/人</span><span class="tag tt">2小时</span></div>
+        </div>
+      </div>
+      <button class="add-note-btn" onclick="addNote(this)">📝 添加个人备注</button>
+    </div>
+  </div>
+</div>
+</div><!-- end city-paris -->
+
+<!-- ===== ROME ===== -->
+<div class="city-section" id="city-rome">
+<div class="city-hdr rome">
+  <div class="city-hdr-emoji">🇮🇹</div>
+  <div class="city-hdr-text">
+    <h2>罗马 Roma</h2>
+    <p>Jun 22–25 · 3晚 · 永恒之城，古罗马与梵蒂冈</p>
+  </div>
+</div>
+
+<!-- Day 7 -->
+<div class="day-card">
+  <div class="day-hdr" onclick="toggleDay(this)">
+    <div class="day-left">
+      <div class="day-badge rome">7</div>
+      <div class="day-title"><h3>6月23日（周一）· 斗兽场 + 梵蒂冈</h3><p>古罗马遗址 + 西斯廷礼拜堂 · The Two Giants</p></div>
+    </div>
+    <span class="day-chevron">▾</span>
+  </div>
+  <div class="day-body">
+    <div class="info-box">⚠️ <strong>注意：</strong>万神庙周一关闭，今天安排斗兽场+梵蒂冈。体力要求较高，建议早起。</div>
+    <div class="plan-toggle">
+      <button class="pt-btn active" onclick="switchPlan(this,'d7a')">☀️ 方案A 斗兽场+梵蒂冈全攻</button>
+      <button class="pt-btn" onclick="switchPlan(this,'d7b')">🌧 方案B 梵蒂冈深度</button>
+    </div>
+    <div class="plan-pane active" id="d7a">
+      <a class="route-btn" href="https://www.google.com/maps/dir/Colosseum+Rome/Roman+Forum+Rome/Vatican+Museums+Rome/St+Peters+Basilica+Vatican" target="_blank">📍 今日路线（斗兽场→罗马广场→梵蒂冈）</a>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">08:30</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">⭐ 斗兽场 + 罗马广场 <a class="ml" href="https://maps.google.com/?q=Colosseum,+Rome" target="_blank">📍</a></div>
+          <div class="tl-en">Colosseum & Roman Forum — Must-see!</div>
+          <div class="tl-desc">全球最知名古建筑！8:30第一批人最少。联票含罗马广场+帕拉蒂尼山，值回票价。<br>预约：<a href="https://www.coopculture.it/en/" target="_blank" style="color:#4285f4">coopculture.it</a>，€18/人，⚠️不预约排队2–3小时。</div>
+          <div class="tags"><span class="tag tb">⚠️ 必须提前购票</span><span class="tag tp">€18/人</span><span class="tag tt">3小时</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">12:30</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">Testaccio街区午餐 <a class="ml" href="https://maps.google.com/?q=Testaccio,+Rome" target="_blank">📍</a></div>
+          <div class="tl-desc">罗马传统美食发源地，步行5分钟，远离旅游区价格合理。</div>
+          <div class="tags"><span class="tag to">€15–25/人</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">14:30</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">⭐ 梵蒂冈博物馆 + 西斯廷礼拜堂 <a class="ml" href="https://maps.google.com/?q=Vatican+Museums,+Rome" target="_blank">📍</a></div>
+          <div class="tl-en">Vatican Museums & Sistine Chapel</div>
+          <div class="tl-desc">米开朗基罗《创世纪》在此！下午去人比上午少。<br>预约：<a href="https://www.museivaticani.va/" target="_blank" style="color:#4285f4">museivaticani.va</a>，€20/人，建议2–3周前购票。</div>
+          <div class="tags"><span class="tag tb">⚠️ 强烈建议提前购票</span><span class="tag tp">€20/人</span><span class="tag tt">2.5–3小时</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">18:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">⭐ 圣彼得大教堂 <a class="ml" href="https://maps.google.com/?q=St+Peters+Basilica+Vatican" target="_blank">📍</a></div>
+          <div class="tl-en">St. Peter's Basilica</div>
+          <div class="tl-desc">世界最大教堂，梵蒂冈博物馆出来步行即到，进入免费。登圆顶€8。<br>⚠️ 着装要求：不可露肩露膝。</div>
+          <div class="tags"><span class="tag tf">进入免费</span><span class="tag tp">圆顶€8</span><span class="tag ti">须盖肩膀和膝盖</span></div>
+          <div class="cost-card" style="margin-top:8px"><div class="cost-hdr">💰 今日花费参考</div><div class="cost-body">
+            <div class="cost-row"><span class="cost-label">斗兽场（含广场）</span><span class="cost-val">€18/人</span></div>
+            <div class="cost-row"><span class="cost-label">梵蒂冈博物馆</span><span class="cost-val">€20/人</span></div>
+            <div class="cost-row"><span class="cost-label">午餐+晚餐</span><span class="cost-val">€30–50/人</span></div>
+            <div class="cost-row"><span class="cost-label">合计/人</span><span class="cost-val">约€68–88</span></div>
+          </div></div>
+        </div>
+      </div>
+      <button class="add-note-btn" onclick="addNote(this)">📝 添加个人备注</button>
+    </div>
+    <div class="plan-pane" id="d7b">
+      <a class="route-btn" href="https://www.google.com/maps/dir/Vatican+Museums+Rome/Castel+Sant+Angelo+Rome" target="_blank">📍 雨天路线（梵蒂冈→圣天使城堡）</a>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">09:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">⭐ 梵蒂冈博物馆全天深度 <a class="ml" href="https://maps.google.com/?q=Vatican+Museums,+Rome" target="_blank">📍</a></div>
+          <div class="tl-desc">雨天慢慢游览地图厅、画廊、西斯廷，不用赶时间。museivaticani.va，€20/人。</div>
+          <div class="tags"><span class="tag tb">⚠️ 提前购票</span><span class="tag tp">€20/人</span><span class="tag tt">可游览4小时</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">14:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">圣彼得大教堂 + 圣天使城堡 <a class="ml" href="https://maps.google.com/?q=Castel+Sant%27Angelo,+Rome" target="_blank">📍</a></div>
+          <div class="tl-desc">圣彼得免费进，圣天使城堡是雨天好去处，教皇古堡改博物馆，顶层俯瞰台伯河。€15/人。</div>
+          <div class="tags"><span class="tag tf">圣彼得免费</span><span class="tag tp">城堡€15/人</span><span class="tag tt">2小时</span></div>
+        </div>
+      </div>
+      <button class="add-note-btn" onclick="addNote(this)">📝 添加个人备注</button>
+    </div>
+  </div>
+</div>
+
+<!-- Day 8 -->
+<div class="day-card">
+  <div class="day-hdr" onclick="toggleDay(this)">
+    <div class="day-left">
+      <div class="day-badge rome">8</div>
+      <div class="day-title"><h3>6月24日（周二）· 万神庙 + 广场漫游</h3><p>万神庙 + 西班牙台阶 + 许愿池 + 博尔盖塞</p></div>
+    </div>
+    <span class="day-chevron">▾</span>
+  </div>
+  <div class="day-body">
+    <div class="plan-toggle">
+      <button class="pt-btn active" onclick="switchPlan(this,'d8a')">☀️ 方案A 广场+博尔盖塞</button>
+      <button class="pt-btn" onclick="switchPlan(this,'d8b')">🌧 方案B 室内艺术线</button>
+    </div>
+    <div class="plan-pane active" id="d8a">
+      <a class="route-btn" href="https://www.google.com/maps/dir/Pantheon+Rome/Piazza+di+Spagna+Rome/Galleria+Borghese+Rome/Villa+Borghese+Park+Rome" target="_blank">📍 今日路线（万神庙→西班牙台阶→博尔盖塞）</a>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">09:30</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">⭐ 万神庙 <a class="ml" href="https://maps.google.com/?q=Pantheon,+Rome" target="_blank">📍</a></div>
+          <div class="tl-en">Pantheon — 2000-year-old Engineering Marvel</div>
+          <div class="tl-desc">保存最完好的古罗马建筑！圆顶中央孔洞是建筑奇迹，免费但需预约时间段。<br>⚠️ 周一关闭，今天是周二可以去。<br>预约：<a href="https://www.pantheonroma.com/" target="_blank" style="color:#4285f4">pantheonroma.com</a>，免费。</div>
+          <div class="tags"><span class="tag tb">免费但需提前预约，⚠️周一关闭</span><span class="tag tf">门票免费</span><span class="tag tt">45分钟</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">11:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">特雷维喷泉白天打卡 + Gelato <a class="ml" href="https://maps.google.com/?q=Trevi+Fountain,+Rome" target="_blank">📍</a></div>
+          <div class="tl-desc">白天也很壮观，投硬币许愿。周边买一球正宗Gelato（找没有堆得高高的那种）。</div>
+          <div class="tags"><span class="tag tf">免费</span><span class="tag to">Gelato €2.5–4/球</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">12:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">西班牙台阶 <a class="ml" href="https://maps.google.com/?q=Piazza+di+Spagna,+Rome" target="_blank">📍</a></div>
+          <div class="tl-en">Piazza di Spagna — Spanish Steps</div>
+          <div class="tl-desc">135级台阶，罗马最上镜地点之一。⚠️ 台阶上严禁饮食，最高罚款€250！先吃完Gelato再上。</div>
+          <div class="tags"><span class="tag tf">免费</span><span class="tag tb">⚠️台阶禁止饮食，罚€250</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">14:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">⭐ 博尔盖塞美术馆（⚠️ 提前2–4周预约）<a class="ml" href="https://maps.google.com/?q=Galleria+Borghese,+Rome" target="_blank">📍</a></div>
+          <div class="tl-en">Galleria Borghese — Rome's Best-kept Secret!</div>
+          <div class="tl-desc">贝尼尼《阿波罗与达芙妮》大理石雕塑令人窒息！每场限25人，参观限2小时，极难抢票。<br>预约：<a href="https://www.galleriaborghese.it/" target="_blank" style="color:#4285f4">galleriaborghese.it</a>，€15+€2/人。</div>
+          <div class="tags"><span class="tag tb">⚠️ 必须提前2–4周预约</span><span class="tag tp">€17/人</span><span class="tag tt">限时2小时</span></div>
+          <div class="cost-card" style="margin-top:8px"><div class="cost-hdr">💰 今日花费参考</div><div class="cost-body">
+            <div class="cost-row"><span class="cost-label">万神庙</span><span class="cost-val">免费</span></div>
+            <div class="cost-row"><span class="cost-label">博尔盖塞美术馆</span><span class="cost-val">€17/人</span></div>
+            <div class="cost-row"><span class="cost-label">Gelato</span><span class="cost-val">€3–4</span></div>
+            <div class="cost-row"><span class="cost-label">午餐+晚餐</span><span class="cost-val">€30–50/人</span></div>
+            <div class="cost-row"><span class="cost-label">合计/人</span><span class="cost-val">约€50–71</span></div>
+          </div></div>
+        </div>
+      </div>
+      <button class="add-note-btn" onclick="addNote(this)">📝 添加个人备注</button>
+    </div>
+    <div class="plan-pane" id="d8b">
+      <a class="route-btn" href="https://www.google.com/maps/dir/Pantheon+Rome/Capitoline+Museums+Rome" target="_blank">📍 雨天路线（万神庙→卡比托利欧）</a>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">10:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">万神庙（雨天特别体验！）<a class="ml" href="https://maps.google.com/?q=Pantheon,+Rome" target="_blank">📍</a></div>
+          <div class="tl-desc">雨天去有奇观：雨水从圆顶孔洞落下，地面古老排水系统完美运转，2000年前的设计！pantheonroma.com，免费预约。</div>
+          <div class="tags"><span class="tag tf">免费</span><span class="tag ti">雨天特别体验</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">12:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">博尔盖塞美术馆（若已预约）<a class="ml" href="https://maps.google.com/?q=Galleria+Borghese,+Rome" target="_blank">📍</a></div>
+          <div class="tl-desc">室内雕塑，雨天不影响，galleriaborghese.it，€17/人，需提前预约。</div>
+          <div class="tags"><span class="tag tb">⚠️ 需提前预约</span><span class="tag tp">€17/人</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">15:30</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">室内咖啡 + 吧台Espresso体验</div>
+          <div class="tl-desc">意大利咖啡文化：站吧台喝Espresso €1–1.5，坐下来同一杯€4–6。站着喝才是地道体验！</div>
+          <div class="tags"><span class="tag to">吧台€1–1.5</span><span class="tag ti">站着喝才正宗</span></div>
+        </div>
+      </div>
+      <button class="add-note-btn" onclick="addNote(this)">📝 添加个人备注</button>
+    </div>
+  </div>
+</div>
+
+<!-- Day 9: Rome → Milan -->
+<div class="day-card">
+  <div class="day-hdr" onclick="toggleDay(this)">
+    <div class="day-left">
+      <div class="day-badge rome">9</div>
+      <div class="day-title"><h3>6月25日（周三）· 罗马→米兰</h3><p>🚄 高铁约3h，抵达时尚之都</p></div>
+    </div>
+    <span class="day-chevron">▾</span>
+  </div>
+  <div class="day-body">
+    <div class="flight-card">
+      <div class="flight-top" style="background:linear-gradient(135deg,#3a1a5e,#6c3483)">
+        <div class="flight-icon">🚄</div>
+        <div>
+          <div class="flight-route">罗马 Termini → 米兰 Centrale</div>
+          <div class="flight-date">Jun 25，建议08:00–09:00出发</div>
+        </div>
+      </div>
+      <div class="flight-body">
+        <div class="flight-row"><span class="flight-label">交通方式</span><span class="flight-val">Frecciarossa高铁（⭐强烈推荐）</span></div>
+        <div class="flight-row"><span class="flight-label">行程时间</span><span class="flight-val">约2小时55分钟</span></div>
+        <div class="flight-row"><span class="flight-label">早鸟票价</span><span class="flight-val">€40–60/人（提前1个月）</span></div>
+        <div class="flight-row"><span class="flight-label">现买票价</span><span class="flight-val">€80–120/人</span></div>
+        <div class="flight-row"><span class="flight-label">推荐购票</span><span class="flight-val">trenitalia.com / italotreno.it</span></div>
+        <div class="flight-row"><span class="flight-label">米兰市区</span><span class="flight-val">地铁2/3号线，约15分钟</span></div>
+        <a class="flight-link" style="background:#6c3483" href="https://www.trenitalia.com/" target="_blank">🎫 Trenitalia官网购票</a>
+      </div>
+    </div>
+    <div class="plan-toggle">
+      <button class="pt-btn active" onclick="switchPlan(this,'d9a')">☀️ 方案A 大教堂+运河区</button>
+      <button class="pt-btn" onclick="switchPlan(this,'d9b')">🌧 方案B 室内+拱廊</button>
+    </div>
+    <div class="plan-pane active" id="d9a">
+      <a class="route-btn" style="background:#6c3483" href="https://www.google.com/maps/dir/Milano+Centrale/Duomo+di+Milano/Galleria+Vittorio+Emanuele+II+Milan/Navigli+Milan" target="_blank">📍 今日路线（中央站→大教堂→拱廊→运河）</a>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">13:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body"><div class="tl-name">抵达米兰 + 入住 + 午餐</div><div class="tl-desc">推荐Risotto alla Milanese（番红花烩饭）或Ossobuco（红烩牛膝），正宗米兰料理。€20–35/人。</div></div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">15:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">⭐ 米兰大教堂 + 拱廊 <a class="ml" href="https://maps.google.com/?q=Duomo+di+Milano" target="_blank">📍</a></div>
+          <div class="tl-en">Duomo di Milano & Galleria Vittorio Emanuele II</div>
+          <div class="tl-desc">哥特式大教堂135个尖塔，登顶俯瞰米兰。紧邻拱廊是全球最美购物廊，地板马赛克必踩（转3圈带来好运传统）。<br>预约：<a href="https://www.duomomilano.it" target="_blank" style="color:#4285f4">duomomilano.it</a>，登顶€15，内部€3。</div>
+          <div class="tags"><span class="tag tw">登顶建议预约</span><span class="tag tp">登顶€15/内部€3</span><span class="tag tf">拱廊免费</span><span class="tag tt">2小时</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">18:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">⭐ Navigli运河区Aperitivo <a class="ml" href="https://maps.google.com/?q=Navigli,+Milan" target="_blank">📍</a></div>
+          <div class="tl-en">Navigli Canal District — Milan's Aperitivo Culture</div>
+          <div class="tl-desc">米兰独特文化！点一杯Aperol Spritz（€8–10）含免费小食自助，运河两岸酒吧云集。这是米兰本地人最喜欢的傍晚方式。</div>
+          <div class="tags"><span class="tag to">Aperitivo €8–12含小食</span><span class="tag ti">米兰特有，强烈推荐</span></div>
+          <div class="cost-card" style="margin-top:8px"><div class="cost-hdr">💰 今日花费参考</div><div class="cost-body">
+            <div class="cost-row"><span class="cost-label">高铁（罗马→米兰）</span><span class="cost-val">€40–60/人（早购）</span></div>
+            <div class="cost-row"><span class="cost-label">大教堂登顶</span><span class="cost-val">€15/人</span></div>
+            <div class="cost-row"><span class="cost-label">午餐+Aperitivo+晚餐</span><span class="cost-val">€35–55/人</span></div>
+          </div></div>
+        </div>
+      </div>
+      <button class="add-note-btn" onclick="addNote(this)">📝 添加个人备注</button>
+    </div>
+    <div class="plan-pane" id="d9b">
+      <a class="route-btn" style="background:#6c3483" href="https://www.google.com/maps/dir/Milano+Centrale/Duomo+di+Milano/Pinacoteca+di+Brera+Milan" target="_blank">📍 雨天路线（大教堂→布雷拉美术馆）</a>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">13:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body"><div class="tl-name">抵达 + 午餐</div><div class="tl-desc">Risotto alla Milanese是米兰招牌，找一家正宗馆子品尝。</div></div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">15:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">大教堂内部 + 拱廊（全程遮蔽）<a class="ml" href="https://maps.google.com/?q=Duomo+di+Milano" target="_blank">📍</a></div>
+          <div class="tl-desc">雨天先参观大教堂内部（€3），再逛完全遮蔽的拱廊欣赏玻璃穹顶和奢侈品橱窗。</div>
+          <div class="tags"><span class="tag tp">内部€3</span><span class="tag tf">拱廊免费</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">17:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">布雷拉美术馆 <a class="ml" href="https://maps.google.com/?q=Pinacoteca+di+Brera,+Milan" target="_blank">📍</a></div>
+          <div class="tl-en">Pinacoteca di Brera</div>
+          <div class="tl-desc">米兰最重要美术馆，文艺复兴画作，游客少可安静欣赏。pinacotecabrera.org，€15/人。</div>
+          <div class="tags"><span class="tag tp">€15/人</span><span class="tag tt">1.5–2小时</span></div>
+        </div>
+      </div>
+      <button class="add-note-btn" onclick="addNote(this)">📝 添加个人备注</button>
+    </div>
+  </div>
+</div>
+</div><!-- end city-rome -->
+
+<!-- ===== MILAN ===== -->
+<div class="city-section" id="city-milan">
+<div class="city-hdr milan">
+  <div class="city-hdr-emoji">🇮🇹</div>
+  <div class="city-hdr-text">
+    <h2>米兰 Milano</h2>
+    <p>Jun 25–28 · 3晚 · 时尚之都，达芬奇的城市（多1天！）</p>
+  </div>
+</div>
+
+<!-- Day 10 -->
+<div class="day-card">
+  <div class="day-hdr" onclick="toggleDay(this)">
+    <div class="day-left">
+      <div class="day-badge milan">10</div>
+      <div class="day-title"><h3>6月26日（周四）· 达芬奇 + 古堡</h3><p>⭐⭐ 最后的晚餐 + 斯福尔扎古堡</p></div>
+    </div>
+    <span class="day-chevron">▾</span>
+  </div>
+  <div class="day-body">
+    <div class="plan-toggle">
+      <button class="pt-btn active" onclick="switchPlan(this,'d10a')">☀️ 方案A 文化+时装区</button>
+      <button class="pt-btn" onclick="switchPlan(this,'d10b')">🌧 方案B 室内精华</button>
+    </div>
+    <div class="plan-pane active" id="d10a">
+      <a class="route-btn" style="background:#6c3483" href="https://www.google.com/maps/dir/Santa+Maria+delle+Grazie+Milan/Castello+Sforzesco+Milan/Quadrilatero+della+Moda+Milan/Navigli+Milan" target="_blank">📍 今日路线（最后的晚餐→古堡→时装区→运河）</a>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">09:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">⭐⭐ 达芬奇《最后的晚餐》<a class="ml" href="https://maps.google.com/?q=Santa+Maria+delle+Grazie,+Milan" target="_blank">📍</a></div>
+          <div class="tl-en">The Last Supper — Book 1–3 MONTHS AHEAD!</div>
+          <div class="tl-desc">世界最著名壁画之一！每场仅25人，参观限15分钟，全年几乎每天售罄。<br>⚠️⚠️ <strong>立刻去买票：</strong><a href="https://cenacolovinciano.vivaticket.it/" target="_blank" style="color:#c0392b;font-weight:800">cenacolovinciano.vivaticket.it</a>，€15+€3.5/人。提前1–3个月！</div>
+          <div class="tags"><span class="tag tb">⚠️⚠️ 提前1–3个月购票，立刻去！</span><span class="tag tp">€15+€3.5</span><span class="tag tt">参观限15分钟</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">10:30</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">斯福尔扎古堡 + 城市公园 <a class="ml" href="https://maps.google.com/?q=Castello+Sforzesco,+Milan" target="_blank">📍</a></div>
+          <div class="tl-en">Castello Sforzesco & Parco Sempione</div>
+          <div class="tl-desc">米兰最大中世纪城堡，内有米开朗基罗最后作品。后面是宽阔城市公园，适合休息。城堡免费，博物馆€5。</div>
+          <div class="tags"><span class="tag tf">城堡外部免费</span><span class="tag tp">博物馆€5</span><span class="tag tt">1.5小时</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">13:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">午餐 + 时装四角形区 <a class="ml" href="https://maps.google.com/?q=Quadrilatero+della+Moda,+Milan" target="_blank">📍</a></div>
+          <div class="tl-en">Lunch + Quadrilatero della Moda</div>
+          <div class="tl-desc">Prada/Gucci/Versace/Armani旗舰店云集，即使不买也值得逛一圈感受世界最顶级时尚氛围。</div>
+          <div class="tags"><span class="tag ti">国内品牌可能便宜10–20%</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">17:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">Navigli运河Aperitivo + 晚餐 <a class="ml" href="https://maps.google.com/?q=Navigli+Grande,+Milan" target="_blank">📍</a></div>
+          <div class="tl-desc">运河区是米兰最有生活气息的地方，Aperitivo后找一家评分好的餐馆预订正宗米兰料理晚餐。</div>
+          <div class="tags"><span class="tag to">Aperitivo €8–10</span><span class="tag tw">晚餐建议提前订位</span></div>
+          <div class="cost-card" style="margin-top:8px"><div class="cost-hdr">💰 今日花费参考</div><div class="cost-body">
+            <div class="cost-row"><span class="cost-label">达芬奇《最后的晚餐》</span><span class="cost-val">€18.5/人</span></div>
+            <div class="cost-row"><span class="cost-label">午餐+Aperitivo+晚餐</span><span class="cost-val">€45–65/人</span></div>
+            <div class="cost-row"><span class="cost-label">合计/人</span><span class="cost-val">约€63–83</span></div>
+          </div></div>
+        </div>
+      </div>
+      <button class="add-note-btn" onclick="addNote(this)">📝 添加个人备注</button>
+    </div>
+    <div class="plan-pane" id="d10b">
+      <a class="route-btn" style="background:#6c3483" href="https://www.google.com/maps/dir/Santa+Maria+delle+Grazie+Milan/Duomo+di+Milano/Pinacoteca+di+Brera+Milan" target="_blank">📍 雨天路线（最后的晚餐→大教堂→布雷拉）</a>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">09:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">⭐⭐ 达芬奇《最后的晚餐》（同上，室内）<a class="ml" href="https://maps.google.com/?q=Santa+Maria+delle+Grazie,+Milan" target="_blank">📍</a></div>
+          <div class="tl-desc">cenacolovinciano.vivaticket.it，€18.5/人，提前1–3个月购票。</div>
+          <div class="tags"><span class="tag tb">⚠️⚠️ 立刻去抢票！</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">11:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">大教堂内部 + 拱廊 <a class="ml" href="https://maps.google.com/?q=Duomo+di+Milano" target="_blank">📍</a></div>
+          <div class="tl-desc">大教堂内部€3，拱廊完全遮蔽，雨天逛街完美。若天气转好可登顶€15。</div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">14:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">布雷拉美术馆 <a class="ml" href="https://maps.google.com/?q=Pinacoteca+di+Brera,+Milan" target="_blank">📍</a></div>
+          <div class="tl-desc">文艺复兴画作，人少安静，pinacotecabrera.org，€15/人。</div>
+          <div class="tags"><span class="tag tp">€15/人</span><span class="tag tt">2小时</span></div>
+        </div>
+      </div>
+      <button class="add-note-btn" onclick="addNote(this)">📝 添加个人备注</button>
+    </div>
+  </div>
+</div>
+
+<!-- Day 11 -->
+<div class="day-card">
+  <div class="day-hdr" onclick="toggleDay(this)">
+    <div class="day-left">
+      <div class="day-badge milan">11</div>
+      <div class="day-title"><h3>6月27日（周五）· 米兰自由日</h3><p>大教堂登顶 + 科莫湖一日游（可选）· Free Day</p></div>
+    </div>
+    <span class="day-chevron">▾</span>
+  </div>
+  <div class="day-body">
+    <div class="info-box">🎉 <strong>多出来的一天！</strong>两个方案：A是轻松市区游+购物，B是去科莫湖一日游（米兰独有优势，高铁1小时即到，非常值得）。</div>
+    <div class="plan-toggle">
+      <button class="pt-btn active" onclick="switchPlan(this,'d11a')">☀️ 方案A 科莫湖一日游</button>
+      <button class="pt-btn" onclick="switchPlan(this,'d11b')">🌧 方案B 市区购物+休闲</button>
+    </div>
+    <div class="plan-pane active" id="d11a">
+      <div class="info-box">🏞 <strong>科莫湖 Lake Como</strong>：意大利最美湖泊之一，乔治·克鲁尼的度假地，湖边小镇风景如画。从米兰中央站约1小时可达。</div>
+      <a class="route-btn" style="background:#059669" href="https://www.google.com/maps/dir/Milano+Centrale/Como+San+Giovanni+Station/Lake+Como+Italy" target="_blank">📍 科莫湖路线 Google Maps</a>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">08:30</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">米兰中央站→科莫 <a class="ml" href="https://maps.google.com/?q=Como+San+Giovanni+Station" target="_blank">📍</a></div>
+          <div class="tl-en">Milano Centrale → Como San Giovanni</div>
+          <div class="tl-desc">Trenitalia区间车约1小时，约€5–7/人单程。或高铁更快约40分钟。到科莫后步行到湖边只需10分钟。</div>
+          <div class="tags"><span class="tag tp">€5–7/人单程</span><span class="tag tt">约1小时</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">10:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">科莫湖畔漫步 + 摆渡船游湖 <a class="ml" href="https://maps.google.com/?q=Lake+Como,+Italy" target="_blank">📍</a></div>
+          <div class="tl-en">Lake Como — Bellagio Ferry & Lakeside Walk</div>
+          <div class="tl-desc">乘摆渡船（Traghetto）到对岸小镇Bellagio，号称"欧洲最美的小镇"，鲜花、彩色房屋、湖景完美。摆渡船约€5/次。</div>
+          <div class="tags"><span class="tag tp">摆渡船€5/次</span><span class="tag tf">湖边步行免费</span><span class="tag tt">半天</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">13:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">Bellagio或Como镇午餐</div>
+          <div class="tl-desc">湖边餐馆吃一顿，风景绝佳，点湖鱼料理（pesce di lago）是当地特色。</div>
+          <div class="tags"><span class="tag to">€25–40/人</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">15:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">返回米兰 + 购物/收拾行李</div>
+          <div class="tl-desc">约17:00回到米兰，最后采购纪念品，整理行李，明天退房。</div>
+          <div class="tags"><span class="tag tp">返程€5–7/人</span></div>
+          <div class="cost-card" style="margin-top:8px"><div class="cost-hdr">💰 科莫湖一日游花费参考</div><div class="cost-body">
+            <div class="cost-row"><span class="cost-label">火车（来回）</span><span class="cost-val">€10–14/人</span></div>
+            <div class="cost-row"><span class="cost-label">摆渡船</span><span class="cost-val">€10/人</span></div>
+            <div class="cost-row"><span class="cost-label">午餐</span><span class="cost-val">€25–40/人</span></div>
+            <div class="cost-row"><span class="cost-label">合计/人</span><span class="cost-val">约€45–64</span></div>
+          </div></div>
+        </div>
+      </div>
+      <button class="add-note-btn" onclick="addNote(this)">📝 添加个人备注</button>
+    </div>
+    <div class="plan-pane" id="d11b">
+      <a class="route-btn" style="background:#6c3483" href="https://www.google.com/maps/dir/Duomo+di+Milano/Brera+Milan/Navigli+Milan" target="_blank">📍 市区休闲路线 Google Maps</a>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">10:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">大教堂登顶（若未去）<a class="ml" href="https://maps.google.com/?q=Duomo+di+Milano" target="_blank">📍</a></div>
+          <div class="tl-desc">晴天登顶最合适，可近距离欣赏哥特式石雕。duomomilano.it，€15/人。</div>
+          <div class="tags"><span class="tag tp">€15/人</span></div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">12:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">Brera艺术区漫步 + 午餐 <a class="ml" href="https://maps.google.com/?q=Brera+Milan" target="_blank">📍</a></div>
+          <div class="tl-desc">米兰最文艺的街区，画廊、独立小店、咖啡馆，有时间可再逛布雷拉美术馆。午餐就在区内找一家小馆。</div>
+        </div>
+      </div>
+      <div class="tl-item"><div class="tl-left"><div class="tl-time">15:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-name">最后购物 + 打包行李</div>
+          <div class="tl-desc">最后机会买Luini Panzerotti（米兰街头炸面团，€3–5），采购橄榄油、意大利面、特产。整理行李，明天早起出发。</div>
+          <div class="tags"><span class="tag ti">明天8:30前退房</span></div>
+        </div>
+      </div>
+      <button class="add-note-btn" onclick="addNote(this)">📝 添加个人备注</button>
+    </div>
+  </div>
+</div>
+
+<!-- Day 12 -->
+<div class="day-card">
+  <div class="day-hdr" onclick="toggleDay(this)">
+    <div class="day-left">
+      <div class="day-badge milan">12</div>
+      <div class="day-title"><h3>6月28日（周六）· 返程</h3><p>✈ 中午12:00从米兰MXP出发，再见欧洲！</p></div>
+    </div>
+    <span class="day-chevron">▾</span>
+  </div>
+  <div class="day-body">
+    <div class="flight-card">
+      <div class="flight-top" style="background:linear-gradient(135deg,#1a2f5e,#0d3b6e)">
+        <div class="flight-icon">✈</div>
+        <div>
+          <div class="flight-route">米兰马尔彭萨（MXP）→ 上海</div>
+          <div class="flight-date">Jun 28，12:00出发</div>
+        </div>
+      </div>
+      <div class="flight-body">
+        <div class="flight-row"><span class="flight-label">退房时间</span><span class="flight-val">酒店约8:00–8:30</span></div>
+        <div class="flight-row"><span class="flight-label">机场交通（推荐）</span><span class="flight-val">Malpensa Express 45min，€13/人</span></div>
+        <div class="flight-row"><span class="flight-label">乘车时间</span><span class="flight-val">Milano Centrale约8:45出发</span></div>
+        <div class="flight-row"><span class="flight-label">到达机场</span><span class="flight-val">约9:30，提前3小时 ✅</span></div>
+        <div class="flight-row"><span class="flight-label">推荐航班</span><span class="flight-val">东航MU / 国航CA 直飞约11h</span></div>
+        <div class="flight-row"><span class="flight-label">⚠️ 建议</span><span class="flight-val">提前一晚网上值机</span></div>
+      </div>
+    </div>
+    <div class="tl-item"><div class="tl-left"><div class="tl-time">08:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-body"><div class="tl-name">酒店早餐 → 退房 → 出发</div><div class="tl-desc">悠闲享用最后一顿欧洲早餐，退房，乘Malpensa Express到机场。</div><div class="tags"><span class="tag tp">Malpensa Express €13/人</span></div></div>
+    </div>
+    <div class="tl-item"><div class="tl-left"><div class="tl-time">12:00</div><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-body">
+        <div class="tl-name">✈ 出发！再见欧洲！🇨🇳 <a class="ml" href="https://maps.google.com/?q=Milan+Malpensa+Airport" target="_blank">📍</a></div>
+        <div class="tl-en">Arrivederci Europa! Bon voyage home!</div>
+        <div class="tl-desc">带着满满的回忆和特产，踏上回程。一路平安！</div>
+      </div>
+    </div>
+    <button class="add-note-btn" onclick="addNote(this)">📝 添加旅行感想</button>
+  </div>
+</div>
+</div><!-- end city-milan -->
+</div><!-- end tab-pane days -->
+
+<!-- ==================== TAB: BOOKING ==================== -->
+<div class="tab-pane" id="pane-booking">
+  <div class="urgent-banner">
+    <h3>⚠️ 现在就去买！最紧急的票</h3>
+    <p>达芬奇《最后的晚餐》全年几乎售罄，行程确定后立刻购票，其余按优先级提前预约。</p>
+  </div>
+  <ol style="list-style:none">
+    <div class="bk-item"><div class="bk-num urgent">1</div><div class="bk-body"><h4>🇮🇹 米兰 · 达芬奇《最后的晚餐》</h4><p>每场25人，参观15分钟，全年售罄。<strong>提前1–3个月！</strong></p><a class="bk-link" href="https://cenacolovinciano.vivaticket.it/" target="_blank">🔗 cenacolovinciano.vivaticket.it → €18.5/人</a></div></div>
+    <div class="bk-item"><div class="bk-num high">2</div><div class="bk-body"><h4>🇮🇹 罗马 · 博尔盖塞美术馆</h4><p>限时2小时，每场限定，提前2–4周。</p><a class="bk-link" href="https://www.galleriaborghese.it/" target="_blank">🔗 galleriaborghese.it → €17/人</a></div></div>
+    <div class="bk-item"><div class="bk-num high">3</div><div class="bk-body"><h4>🇫🇷 巴黎 · 卢浮宫</h4><p>不买票排队2–3小时，提前1–2周。</p><a class="bk-link" href="https://www.ticketlouvre.fr/" target="_blank">🔗 ticketlouvre.fr → €22/人</a></div></div>
+    <div class="bk-item"><div class="bk-num normal">4</div><div class="bk-body"><h4>🇮🇹 罗马 · 梵蒂冈博物馆</h4><p>旺季排队2小时，提前2–3周。</p><a class="bk-link" href="https://www.museivaticani.va/" target="_blank">🔗 museivaticani.va → €20/人</a></div></div>
+    <div class="bk-item"><div class="bk-num normal">5</div><div class="bk-body"><h4>🇮🇹 罗马 · 斗兽场+罗马广场</h4><p>旺季排队2小时以上，提前1–2周。</p><a class="bk-link" href="https://www.coopculture.it/en/" target="_blank">🔗 coopculture.it → €18/人</a></div></div>
+    <div class="bk-item"><div class="bk-num normal">6</div><div class="bk-body"><h4>🚄 罗马→米兰高铁</h4><p>提前1个月早鸟约€40–60，现买€80–120。</p><a class="bk-link" href="https://www.trenitalia.com/" target="_blank">🔗 trenitalia.com / italotreno.it</a></div></div>
+    <div class="bk-item"><div class="bk-num normal">7</div><div class="bk-body"><h4>🇮🇹 罗马 · 万神庙</h4><p>免费入场但需提前预约时段，周一休馆。</p><a class="bk-link" href="https://www.pantheonroma.com/" target="_blank">🔗 pantheonroma.com → 免费</a></div></div>
+    <div class="bk-item"><div class="bk-num normal">8</div><div class="bk-body"><h4>🇫🇷 巴黎 · 埃菲尔铁塔登顶</h4><p>若要登顶，提前1–2周购票。</p><a class="bk-link" href="https://www.toureiffel.paris/" target="_blank">🔗 toureiffel.paris → €19–29/人</a></div></div>
+    <div class="bk-item"><div class="bk-num normal">9</div><div class="bk-body"><h4>🇪🇸 马德里 · 普拉多博物馆</h4><p>提前几天即可，但网购可省排队时间。</p><a class="bk-link" href="https://www.museodelprado.es/en/visit/tickets" target="_blank">🔗 museodelprado.es → €15/人</a></div></div>
+  </ol>
+</div>
+
+<!-- ==================== TAB: CHECKLIST ==================== -->
+<div class="tab-pane" id="pane-check">
+  <p style="font-size:.75rem;color:var(--muted);margin-bottom:.75rem">点击方框打勾追踪进度，刷新页面会重置 · Tap to check off items</p>
+
+  <div class="cl-group">
+    <h3>🎫 出发前必完成（按顺序）</h3>
+    <ul class="cl-list">
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">申请申根签证<span class="note">提前2–3个月，马德里入境</span></div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">购买《最后的晚餐》票<span class="note">⚠️ 最紧急！cenacolovinciano.vivaticket.it，€18.5/人</span></div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">购买博尔盖塞美术馆票<span class="note">galleriaborghese.it，€17/人，提前2–4周</span></div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">购买卢浮宫票<span class="note">ticketlouvre.fr，€22/人，提前1–2周</span></div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">购买梵蒂冈博物馆票<span class="note">museivaticani.va，€20/人，提前2–3周</span></div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">购买斗兽场票<span class="note">coopculture.it，€18/人，提前1–2周</span></div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">预约万神庙（免费）<span class="note">pantheonroma.com，提前几天即可</span></div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">购买罗马→米兰高铁票<span class="note">trenitalia.com，提前1个月约€40–60</span></div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">购买三段机票<span class="note">MAD→CDG，CDG→FCO，MXP→上海</span></div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">预订各城市酒店<span class="note">4个城市各订好，6月旺季早订</span></div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">购买欧洲eSIM<span class="note">Airalo App，提前激活</span></div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">购买旅行保险<span class="note">含医疗+行李损失，申根必须</span></div></li>
+    </ul>
+  </div>
+
+  <div class="cl-group">
+    <h3>📄 证件 & 财务</h3>
+    <ul class="cl-list">
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">护照（有效期超出6个月）</div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">护照复印件 × 2份（分开存放）</div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">Visa信用卡 + Mastercard备用卡</div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">现金欧元€400（两人共用）</div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">所有预约确认邮件截图（离线保存）</div></li>
+    </ul>
+  </div>
+
+  <div class="cl-group">
+    <h3>👕 衣物（6月欧洲20–35°C）</h3>
+    <ul class="cl-list">
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">T恤 × 5件（轻薄透气）</div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">长裤 × 2条<span class="note">进教堂必须，不能露膝</span></div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">短裤 × 2条</div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">薄外套 × 1–2件（巴黎夜晚凉）</div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">步行鞋（已穿过的！不要新鞋）<span class="note">每天步行10–15km</span></div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">轻薄凉鞋</div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">防水外套/折叠雨伞<span class="note">巴黎偶有阵雨</span></div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">围巾一条<span class="note">进教堂时盖肩膀</span></div></li>
+    </ul>
+  </div>
+
+  <div class="cl-group">
+    <h3>💊 健康 & 日常</h3>
+    <ul class="cl-list">
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">防晒霜SPF50+（大量带）</div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">肠胃药 + 止痛药 + 感冒药</div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">创可贴 + 消毒湿巾</div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">保湿水 / 护唇膏（欧洲干燥）</div></li>
+    </ul>
+  </div>
+
+  <div class="cl-group">
+    <h3>🔌 数码 & 配件</h3>
+    <ul class="cl-list">
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">欧标插头转换器（C/F型圆形2脚）</div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">充电宝 ≥10000mAh</div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">充电线 × 2根（备用）</div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">相机（可选）</div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">飞机颈枕 + 耳机</div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">行李秤（回程防超重）</div></li>
+    </ul>
+  </div>
+
+  <div class="cl-group">
+    <h3>📱 必装APP</h3>
+    <ul class="cl-list">
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">Google Maps（离线下载4城地图）</div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">Google Translate（离线西班牙语/法语/意大利语）</div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">Citymapper（欧洲城市交通）</div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">Trenitalia App（意大利高铁）</div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">TheFork（欧洲餐厅订座）</div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">XE Currency（实时汇率）</div></li>
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text">Splitwise（两人分账）</div></li>
+    </ul>
+  </div>
+
+  <div class="cl-group">
+    <h3>📝 个人自定义Checklist</h3>
+    <ul class="cl-list" id="custom-cl">
+      <li class="cl-item"><div class="chk" onclick="chk(this)"></div><div class="cl-text" contenteditable="true" style="outline:none;border-bottom:1px dashed #d1d5db">点击编辑此条目…</div></li>
+    </ul>
+    <button class="add-note-btn" onclick="addCheckItem()">＋ 添加自定义事项</button>
+  </div>
+</div>
+
+<!-- ==================== TAB: TIPS ==================== -->
+<div class="tab-pane" id="pane-tips">
+  <div class="slabel">🔑 关键注意事项</div>
+  <div class="tip-item"><div class="tip-icon">🚨</div><div>三城扒手多！特别：巴黎地铁、铁塔周边、罗马许愿池。手机不放后裤袋，背包放胸前，贵重物品分散存。</div></div>
+  <div class="tip-item"><div class="tip-icon">⚠️</div><div>巴黎常见骗局：签名请愿、假手链。直接说"Non merci"走开，不要停下。</div></div>
+  <div class="tip-item"><div class="tip-icon">⛪</div><div>进教堂必须盖肩膀+膝盖，无袖/短裤会被拒绝进入，带条围巾临时披上即可。</div></div>
+  <div class="tip-item"><div class="tip-icon">🚫</div><div>罗马西班牙台阶禁止饮食，最高罚€250。特雷维喷泉边也有限制。</div></div>
+  <div class="tip-item"><div class="tip-icon">🕙</div><div>西班牙晚饭21:00才是高峰，意大利咖啡站吧台喝€1.5，坐下同一杯€5，Cappuccino只在上午点。</div></div>
+  <div class="tip-item"><div class="tip-icon">💰</div><div>意大利餐馆收Coperto（桌台费）€2–3/人，属正常收费。帮你核对账单。</div></div>
+  <div class="tip-item"><div class="tip-icon">📱</div><div>欧洲紧急电话：112（全欧盟通用）。记录各城市酒店地址。</div></div>
+  <div class="tip-item"><div class="tip-icon">🌡</div><div>6月天气：马德里33°C干热、巴黎23°C偶雨、罗马31°C晴热、米兰28°C晴为主。防晒霜必备。</div></div>
+  <div class="tip-item"><div class="tip-icon">💳</div><div>刷卡为主，Visa/Mastercard通用，Apple Pay在很多地方也可以。现金备€200/人足够。</div></div>
+  <div class="tip-item"><div class="tip-icon">🎟</div><div>省钱：普拉多每天18:00–20:00免费；索菲亚周六14:00后/周日免费；奥赛每月第一个周日免费。</div></div>
+
+  <div class="slabel">🍽 吃饭推荐 Top Picks</div>
+  <table class="rtable">
+    <thead><tr><th>城市</th><th>餐厅/必吃</th><th>人均</th></tr></thead>
+    <tbody>
+      <tr><td>🇪🇸</td><td><div class="r-name">La Barraca</div><div class="r-det">正宗海鲜饭，提前订位</div></td><td>€25–40</td></tr>
+      <tr><td>🇪🇸</td><td><div class="r-name">Churros San Ginés</div><div class="r-det">1894年，24h营业</div></td><td>€5–8</td></tr>
+      <tr><td>🇫🇷</td><td><div class="r-name">L'As du Fallafel</div><div class="r-det">玛黑区，巴黎最佳Falafel</div></td><td>€8–12</td></tr>
+      <tr><td>🇫🇷</td><td><div class="r-name">Ladurée马卡龙</div><div class="r-det">香榭丽舍店，必买伴手礼</div></td><td>€2.5–3.5/个</td></tr>
+      <tr><td>🇮🇹</td><td><div class="r-name">Da Enzo al 29</div><div class="r-det">Cacio e Pepe，需预订</div></td><td>€25–35</td></tr>
+      <tr><td>🇮🇹</td><td><div class="r-name">Gelateria dei Gracchi</div><div class="r-det">罗马最佳Gelato，梵蒂冈旁</div></td><td>€3–4/球</td></tr>
+      <tr><td>🇮🇹</td><td><div class="r-name">Trattoria Milanese</div><div class="r-det">1933年，最正宗Risotto</div></td><td>€35–50</td></tr>
+      <tr><td>🇮🇹</td><td><div class="r-name">Luini Panzerotti</div><div class="r-det">米兰街头炸面团小吃</div></td><td>€3–5/个</td></tr>
+    </tbody>
+  </table>
+
+  <div class="slabel">🏨 住宿推荐区域</div>
+  <div class="h-card"><div class="h-name">🇪🇸 马德里</div><div class="h-area">Sol / Gran Vía / Malasaña区</div><div class="h-why">步行到普拉多、王宫、主要广场均方便。推荐：Hotel Vincci Capitol（Gran Vía，€120–180）</div></div>
+  <div class="h-card"><div class="h-name">🇫🇷 巴黎</div><div class="h-area">圣日耳曼6区 / 玛黑4区 / 卢浮宫1区</div><div class="h-why">步行到卢浮宫、奥赛均在20–30分钟。推荐：Hôtel des Grands Boulevards（€180–250）</div></div>
+  <div class="h-card"><div class="h-name">🇮🇹 罗马</div><div class="h-area">Termini附近 / 纳沃纳广场周边历史中心</div><div class="h-why">Termini交通方便，历史中心步行到景点方便。推荐：Hotel Artemide（€120–180）</div></div>
+  <div class="h-card"><div class="h-name">🇮🇹 米兰</div><div class="h-area">Duomo区 / Brera / Navigli运河区</div><div class="h-why">3晚可分住2个区域体验不同氛围。推荐：Navigli精品民宿（€100–150）</div></div>
+</div>
+
+</div><!-- end content -->
+
+<!-- ===== BOTTOM NAV ===== -->
+<nav class="bottom-nav">
+  <button class="bn-item active" onclick="switchTab('days',this)"><span class="bn-icon">📅</span>行程</button>
+  <button class="bn-item" onclick="switchTab('booking',this)"><span class="bn-icon">🎫</span>预约</button>
+  <button class="bn-item" onclick="switchTab('check',this)"><span class="bn-icon">✅</span>清单</button>
+  <button class="bn-item" onclick="switchTab('tips',this)"><span class="bn-icon">💡</span>贴士</button>
+</nav>
+
+<script>
+function switchTab(id,btn){
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.bn-item').forEach(b=>b.classList.remove('active'));
+  document.getElementById('pane-'+id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function toggleDay(hdr){
+  const body=hdr.nextElementSibling;
+  const chev=hdr.querySelector('.day-chevron');
+  const open=body.classList.contains('open');
+  document.querySelectorAll('.day-body').forEach(b=>b.classList.remove('open'));
+  document.querySelectorAll('.day-chevron').forEach(c=>c.classList.remove('open'));
+  if(!open){body.classList.add('open');chev.classList.add('open');
+    setTimeout(()=>hdr.scrollIntoView({behavior:'smooth',block:'start'}),100);}
+}
+function switchPlan(btn,id){
+  const db=btn.closest('.day-body');
+  db.querySelectorAll('.pt-btn').forEach(b=>b.classList.remove('active'));
+  db.querySelectorAll('.plan-pane').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  db.querySelector('#'+id).classList.add('active');
+}
+function chk(el){el.classList.toggle('done');}
+function jumpCity(city){
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.bn-item').forEach(b=>b.classList.remove('active'));
+  document.getElementById('pane-days').classList.add('active');
+  document.querySelector('.bn-item').classList.add('active');
+  setTimeout(()=>{
+    const el=document.getElementById('city-'+city);
+    if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+  },100);
+}
+function addNote(btn){
+  const note=document.createElement('div');
+  note.className='custom-note';
+  note.contentEditable='true';
+  btn.parentNode.insertBefore(note,btn);
+  note.focus();
+}
+function addCheckItem(){
+  const list=document.getElementById('custom-cl');
+  const li=document.createElement('li');
+  li.className='cl-item';
+  li.innerHTML='<div class="chk" onclick="chk(this)"></div><div class="cl-text" contenteditable="true" style="outline:none;border-bottom:1px dashed #d1d5db">点击编辑此条目…</div>';
+  list.appendChild(li);
+  li.querySelector('[contenteditable]').focus();
+}
+// Open first day by default
+document.querySelector('.day-hdr').click();
+</script>
+</body>
+</html>
